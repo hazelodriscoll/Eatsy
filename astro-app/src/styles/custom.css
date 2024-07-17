@@ -1,0 +1,22 @@
+.custom-rounded {
+    border-radius: 15px;
+  }
+
+  .btn-primary {
+    background-color: #f09079 !important;
+    border-color: #f09079 !important;
+  }
+
+  .card {
+    background-color: #f8c9be !important;
+    border-color: #f8c9be !important;
+    border-radius: 15px;
+  }
+
+  body {
+    background-color: #fdefec !important;
+  }
+
+  .jumbotron {
+    background-color: #f8c9be !important;
+  }
