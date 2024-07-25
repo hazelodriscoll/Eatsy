@@ -10,8 +10,9 @@
       console.log('Random item:', randomItem);
     }
   </script>
-  
-  <button class="btn btn-primary btn-lg" on:click={getRandomItem}>Get Suggestions</button>
+   <div class="center-content">
+  <button class="btn btn-primary btn-lg" on:click={getRandomItem}>Take Me to Random Recipie</button>
+  </div>
   <br>
   <br>
   {#if randomItem}

@@ -1,84 +1,116 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import RandomItem from '../components/RandomItem.svelte';
-import { getRecipies } from '../services/recipieService.js';
-import Card from '../components/Card.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RandomItem from "../components/RandomItem.svelte";
+import { getRecipies } from "../services/recipieService.js";
+import Card from "../components/Card.astro";
 
 // Assuming you have an image file at src/assets/your-image.jpg
-const imageUrl = '/images/eatsyLogo.svg';
+const imageUrl = "/images/eatsyLogo.svg";
 
 // Hardcoded values
 const params = {
-  type: 'public',
-  app_id: 'ee1d55c8',
-  app_key: '1060a30958c801cf10322dc2415773fb',
-  mealType: ['Dinner'],
-  random: true
+  apiKey: "fb571eb0a36b417daee401017d390f99",
+  "include-tags": "main course",
+  number: "3",
 };
 
 // Example call to getRecipies with dynamic parameters including hardcoded values
-const recipes = await getRecipies(params);
-console.log('recipies' + recipes.hits.toString());
-console.log('recipes', JSON.stringify(recipes.hits, null, 2));
+const recipies = await getRecipies(params);
 ---
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <img src={imageUrl} class="img-fluid custom-rounded" alt="Descriptive Alt Text">
+        <img
+          src={imageUrl}
+          class="img-fluid custom-rounded"
+          alt="Descriptive Alt Text"
+        />
       </div>
       <div class="col-md-6">
         <div class="jumbotron p-5 custom-rounded">
           <h1 class="display-4">Welcome to Eatsy</h1>
           <p class="lead text-center">Food for Thought</p>
-          <hr class="my-4">
-          <p>Need dinner inspiration? Let us do the thinking! <br> Click below for a tasty suggestion or explore recipes for endless inspiration.</p>
-          <RandomItem client:load></RandomItem>
-        </div>
+          <hr class="my-4" />
+          <p class="detail-info">
+            Need dinner inspiration? Let us do the thinking! <br /> Click below for
+            a random tasty suggestion or explore recipies for endless inspiration.
+          </p>
+          <RandomItem client:load />
         </div>
       </div>
     </div>
   </div>
 
-    <div slot="main" class="container mt-5">
-    <div class="row">
-      {recipes.hits.slice(0, 3).map((hit, index) => (
-        <div key={index} class="col-md-4">
-          <div class="card">
-            <img src={hit.recipe.image} class="card-img-top" alt={hit.recipe.label}>
-            <div class="card-body">
-              <h5 class="card-title">{hit.recipe.label}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href={hit.recipe.url} class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+  <!-- New Heading for Popular Recipes -->
+  <div slot="main" class="container mt-5">
+    <h3 class="display-4">Popular Recipes</h3>
   </div>
 
   <div slot="main" class="container mt-5">
     <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Feature 1</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+      {
+        recipies.recipes.slice(0, 3).map((recipie, index) => (
+          <div key={index} class="col-md-4">
+            <div class="card">
+              <img
+                src={recipie.image}
+                class="img-fluid custom-rounded card-img-top"
+                alt={recipie.title}
+              />
+              <div class="card-body">
+                <h5 class="card-title .detail-name">{recipie.title}</h5>
+                <div class="recipe-details">
+                  <span class="detail-name">
+                    <img
+                      src="/images/time-icon.png"
+                      alt="Time"
+                      class="detail-icon"
+                    />{" "}
+                    Total Time:
+                  </span>{" "}
+                  <>
+                    <span class="detail-info">
+                      {recipie.readyInMinutes} minutes
+                    </span>
+                    <br />
+                  </>
+                  <span class="detail-name">
+                    <img
+                      src="/images/servings-icon.png"
+                      alt="Servings"
+                      class="detail-icon"
+                    />{" "}
+                    Servings:
+                  </span>{" "}
+                  <>
+                    <span class="detail-info">{recipie.servings}</span>
+                    <br />
+                  </>
+                  <span class="detail-name">
+                    <img
+                      src="/images/recipie-by-icon.png"
+                      alt="Recipe by"
+                      class="detail-icon"
+                    />{" "}
+                    Recipe by:
+                  </span>{" "}
+                  <span class="detail-info">{recipie.creditsText}</span>
+                </div>
+                <div class="center-content">
+                  <a
+                    href={recipie.spoonacularSourceUrl}
+                    class="btn btn-primary"
+                  >
+                    View Full Recipie
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Feature 2</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
-
 </BaseLayout>
