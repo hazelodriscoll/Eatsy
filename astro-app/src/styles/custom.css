@@ -9,8 +9,12 @@
 
   .card {
     background-color: #f8c9be !important;
+    border: 1px solid hsl(0, 0%, 87%);
     border-color: #f8c9be !important;
     border-radius: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
   body {
@@ -19,4 +23,31 @@
 
   .jumbotron {
     background-color: #f8c9be !important;
+  }
+
+  .recipe-details {
+    margin-top: 10px;
+  }
+  
+  .detail-name {
+    font-weight: bold;
+    color: #56494C; 
+  }
+  
+  .detail-info {
+    color: #343a40; 
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .detail-icon {
+    width: 30px; 
+    height: 30px; 
+    vertical-align: middle;
+    margin-right: 5px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .center-content {
+    display: flex;
+    justify-content: center;
   }
