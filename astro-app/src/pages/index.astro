@@ -5,7 +5,7 @@ import { getRecipies } from "../services/recipieService.js";
 import Card from "../components/Card.astro";
 
 // Assuming you have an image file at src/assets/your-image.jpg
-const imageUrl = "/images/eatsyLogo.svg";
+const imageUrl = "/Eatsy/images/eatsyLogo.svg";
 
 // Hardcoded values
 const params = {
@@ -64,7 +64,7 @@ const recipies = await getRecipies(params);
                 <div class="recipe-details">
                   <span class="detail-name">
                     <img
-                      src="/images/time-icon.png"
+                      src="/Eatsy/images/time-icon.png"
                       alt="Time"
                       class="detail-icon"
                     />{" "}
@@ -78,7 +78,7 @@ const recipies = await getRecipies(params);
                   </>
                   <span class="detail-name">
                     <img
-                      src="/images/servings-icon.png"
+                      src="/Eatsy/images/servings-icon.png"
                       alt="Servings"
                       class="detail-icon"
                     />{" "}
@@ -90,7 +90,7 @@ const recipies = await getRecipies(params);
                   </>
                   <span class="detail-name">
                     <img
-                      src="/images/recipie-by-icon.png"
+                      src="/Eatsy/images/recipie-by-icon.png"
                       alt="Recipe by"
                       class="detail-icon"
                     />{" "}
