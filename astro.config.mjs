@@ -5,6 +5,5 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte()],
-  site: "https://hazelodriscoll.github.io",
-  base: "/Eatsy",
+  site: "https://hazelodriscoll.github.io/Eatsy",
 });
