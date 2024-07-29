@@ -1,6 +1,5 @@
 <script>
   import RecipieCard from "./RecipieCard.svelte";
-
   import { setRecipie } from "../services/store.js";
   import { getRecipie } from "../services/store.js";
   export let allRecipies;
