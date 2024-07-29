@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RandomItem from "../components/RandomItem.svelte";
 import { getRecipies } from "../services/recipieService.js";
-import Card from "../components/Card.astro";
+import RecipeCard from "../components/RecipieCard.svelte";
 
 // Assuming you have an image file at src/assets/your-image.jpg
 const imageUrl = "/Eatsy/images/eatsyLogo.svg";
@@ -43,73 +43,13 @@ const recipies = await getRecipies(params);
     </div>
   </div>
 
-  <!-- New Heading for Popular Recipes -->
   <div slot="main" class="container mt-5">
     <h3 class="display-4">Popular Recipes</h3>
-  </div>
-
-  <div slot="main" class="container mt-5">
     <div class="row">
       {
-        recipies.recipes.slice(0, 3).map((recipie, index) => (
-          <div key={index} class="col-md-4">
-            <div class="card">
-              <img
-                src={recipie.image}
-                class="img-fluid custom-rounded card-img-top"
-                alt={recipie.title}
-              />
-              <div class="card-body">
-                <h5 class="card-title .detail-name">{recipie.title}</h5>
-                <div class="recipe-details">
-                  <span class="detail-name">
-                    <img
-                      src="/Eatsy/images/time-icon.png"
-                      alt="Time"
-                      class="detail-icon"
-                    />{" "}
-                    Total Time:
-                  </span>{" "}
-                  <>
-                    <span class="detail-info">
-                      {recipie.readyInMinutes} minutes
-                    </span>
-                    <br />
-                  </>
-                  <span class="detail-name">
-                    <img
-                      src="/Eatsy/images/servings-icon.png"
-                      alt="Servings"
-                      class="detail-icon"
-                    />{" "}
-                    Servings:
-                  </span>{" "}
-                  <>
-                    <span class="detail-info">{recipie.servings}</span>
-                    <br />
-                  </>
-                  <span class="detail-name">
-                    <img
-                      src="/Eatsy/images/recipie-by-icon.png"
-                      alt="Recipe by"
-                      class="detail-icon"
-                    />{" "}
-                    Recipe by:
-                  </span>{" "}
-                  <span class="detail-info">{recipie.creditsText}</span>
-                </div>
-                <div class="center-content">
-                  <a
-                    href={recipie.spoonacularSourceUrl}
-                    class="btn btn-primary"
-                  >
-                    View Full Recipie
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))
+        recipies.recipes
+          .slice(0, 3)
+          .map((recipie) => <RecipeCard recipie={recipie} />)
       }
     </div>
   </div>
