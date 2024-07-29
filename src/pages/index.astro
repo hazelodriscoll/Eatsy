@@ -47,9 +47,13 @@ const recipies = await getRecipies(params);
     <h3 class="display-4">Popular Recipes</h3>
     <div class="row">
       {
-        recipies.recipes
-          .slice(0, 3)
-          .map((recipie) => <RecipeCard recipie={recipie} />)
+        recipies.recipes.slice(0, 3).map((recipie) => (
+          <div class="col-md-4">
+            <div class="card fixed-size-card">
+              <RecipeCard recipie={recipie} />
+            </div>
+          </div>
+        ))
       }
     </div>
   </div>
