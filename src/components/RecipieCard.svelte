@@ -2,9 +2,6 @@
   import ViewIngredients from './ViewIngredients.svelte';
   export let recipie;
 </script>
-
-<div class="col-md-4">
-  <div class="card fixed-size-card">
     <img
       src={recipie.image}
       class="img-fluid custom-rounded card-img-top card-image"
@@ -44,5 +41,3 @@
         </div>
       </div>
     </div>
-  </div>
-</div>

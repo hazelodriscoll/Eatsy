@@ -1,8 +1,8 @@
 <script>
-  import RecipieCard from "./RecipieCard.svelte"
+  import RecipieCard from "./RecipieCard.svelte";
 
-  import { setRecipie } from '../services/store.js';
-  import { getRecipie } from '../services/store.js';
+  import { setRecipie } from "../services/store.js";
+  import { getRecipie } from "../services/store.js";
   export let allRecipies;
   export let recipiesPerPage;
   export let currentPage;
@@ -33,30 +33,48 @@
   };
 
   const setCurrentRecipie = (index) => {
-  setRecipie(recipies[index]);
-  console.log('recipies[index]', recipies[index]);
-  const getrecipie = getRecipie();
-  console.log('getrecipie', getrecipie);
-  window.location.href = '/Eatsy/ingredients'; 
+    setRecipie(recipies[index]);
+    console.log("recipies[index]", recipies[index]);
+    const getrecipie = getRecipie();
+    console.log("getrecipie", getrecipie);
+    window.location.href = "/Eatsy/ingredients";
   };
 </script>
 
-<div>
-  <div class="row" id="recipie-container">
+<div class="container">
+  <div class="row">
     {#each recipies as recipie, index}
       {#if recipie && recipie.title}
-        <RecipieCard recipie={recipie} />
-        <button class="btn btn-primary" on:click={() => setCurrentRecipie(index)}>
-          View Ingredients
-        </button>
+        <div class="col-md-4">
+          <div class="card fixed-size-card">
+            <RecipieCard {recipie} />
+            <div class="center-content">
+              <button
+                class="btn btn-primary"
+                on:click={() => setCurrentRecipie(index)}
+              >
+                View Ingredients
+              </button>
+            </div>
+          </div>
+        </div>
       {:else}
         <div>Error: Invalid recipie data</div>
       {/if}
     {/each}
   </div>
-   <div class="pagination-controls">
-    <button class="btn btn-primary" on:click={prevPage} disabled={currentPage === 1}>Previous</button>
+  <div class="pagination-controls">
+    <button
+      class="btn btn-primary"
+      on:click={prevPage}
+      disabled={currentPage === 1}>Previous</button
+    >
     <span class="page-number">Page {currentPage}</span>
-    <button class="btn btn-primary" on:click={nextPage} disabled={currentPage === Math.ceil(allRecipies.recipes.length / recipiesPerPage)}>Next</button>
+    <button
+      class="btn btn-primary"
+      on:click={nextPage}
+      disabled={currentPage ===
+        Math.ceil(allRecipies.recipes.length / recipiesPerPage)}>Next</button
+    >
   </div>
 </div>
