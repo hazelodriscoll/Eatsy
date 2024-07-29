@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getRecipies } from "../services/recipieService.js";
+import RecipiePagination from "../components/RecipiePagination.svelte";
+
+const params = {
+  apiKey: "fb571eb0a36b417daee401017d390f99",
+  "include-tags": "main course",
+  number: "27",
+};
+
+let allRecipies;
+try {
+  allRecipies = await getRecipies(params);
+} catch (error) {
+  console.error("Failed to fetch recipes:", error);
+  allRecipies = { recipes: [] };
+}
+
+const recipesPerPage = 9;
+let currentPage = 1;
+const getPaginatedRecipies = (page) => {
+  if (!allRecipies || !allRecipies.recipes) {
+    console.error("No recipes available");
+    return [];
+  }
+  const start = (page - 1) * recipesPerPage;
+  const end = start + recipesPerPage;
+  return allRecipies.recipes.slice(start, end);
+};
+let recipies = getPaginatedRecipies(currentPage);
+---
+
+<BaseLayout>
+  <div slot="main" class="container mt-5">
+    <h3 class="display-4">Browse Recipes</h3>
+    <RecipiePagination
+      client:only="svelte"
+      allRecipies={allRecipies}
+      recipiesPerPage={recipesPerPage}
+      currentPage={currentPage}
+    />
+  </div>
+</BaseLayout>
