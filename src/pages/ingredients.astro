@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RecipieIngredients from "../components/RecipieIngredients.svelte";
+
+---
+
+<BaseLayout>
+  <div slot="main" class="container mt-5">
+    <RecipieIngredients client:load />
+  </div>
+</BaseLayout>

@@ -42,6 +42,10 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.detail-link {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
 .detail-icon {
   width: 30px;
   height: 30px;
@@ -86,4 +90,48 @@ body {
 
 .page-number {
   margin: 0 10px;
+}
+
+.ingredientsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.ingredientsList {
+  flex: 1;
+  margin-right: 20px;
+}
+.ingredientsImage {
+  flex: 1;
+}
+.ingredientsImage img {
+  width: 100%;
+  height: auto;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+  .ingredientsImage img {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .ingredientsImage img {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ingredientsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ingredientsList {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .ingredientsImage img {
+    max-width: 100%;
+  }
 }
