@@ -1,4 +1,5 @@
-<script>
+<script>  
+  import ViewIngredients from './ViewIngredients.svelte';
   export let recipie;
 </script>
 
@@ -37,13 +38,10 @@
             class="detail-icon"
           />
           <span class="detail-name">Recipe by:</span>
-          <span class="detail-info">{recipie.creditsText}</span>
+            <a href={recipie.spoonacularSourceUrl} target="_blank" rel="noopener noreferrer" class="link-dark">
+              <span class="detail-link">{recipie.creditsText}</span>
+            </a>
         </div>
-      </div>
-      <div class="center-content">
-        <a href={recipie.spoonacularSourceUrl} class="btn btn-primary">
-          View Full Recipie
-        </a>
       </div>
     </div>
   </div>
