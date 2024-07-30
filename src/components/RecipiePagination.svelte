@@ -1,7 +1,6 @@
 <script>
   import RecipieCard from "./RecipieCard.svelte";
   import { setRecipie } from "../services/store.js";
-  import { getRecipie } from "../services/store.js";
   export let allRecipies;
   export let recipiesPerPage;
   export let currentPage;
@@ -33,9 +32,6 @@
 
   const setCurrentRecipie = (index) => {
     setRecipie(recipies[index]);
-    console.log("recipies[index]", recipies[index]);
-    const getrecipie = getRecipie();
-    console.log("getrecipie", getrecipie);
     window.location.href = "/Eatsy/ingredients";
   };
 </script>
