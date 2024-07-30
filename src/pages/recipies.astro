@@ -19,16 +19,6 @@ try {
 
 const recipesPerPage = 9;
 let currentPage = 1;
-const getPaginatedRecipies = (page) => {
-  if (!allRecipies || !allRecipies.recipes) {
-    console.error("No recipes available");
-    return [];
-  }
-  const start = (page - 1) * recipesPerPage;
-  const end = start + recipesPerPage;
-  return allRecipies.recipes.slice(start, end);
-};
-let recipies = getPaginatedRecipies(currentPage);
 ---
 
 <BaseLayout>

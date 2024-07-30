@@ -1,27 +1,40 @@
 function constructQueryString(params) {
-  return Object.keys(params).map(key => {
-      const value = params[key];
-      if (Array.isArray(value)) {
-          // Handle arrays, assuming the API expects 'key=value1&key=value2' format
-          return value.map(val => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`).join('&');
-      } else {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-      }
-  }).join('&');
+  return new URLSearchParams(params).toString();
 }
-  
-  // Example usage with getRecipies function
-  export async function getRecipies(params) {
-    const baseURL = 'https://api.spoonacular.com/recipes/random';
-    const queryString = constructQueryString(params); // Convert params object to query string
-    const fullURL = `${baseURL}?${queryString}`;
-    console.log('fullURL:' + fullURL);
-    try {
-        const response = await fetch(fullURL);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching recipes:', error);
-        return null;
+
+// Get Random Recipies
+export async function getRecipies(params) {
+  const baseURL = "https://api.spoonacular.com/recipes/random";
+  const queryString = constructQueryString(params); // Convert params object to query string
+  const fullURL = `${baseURL}?${queryString}`;
+  console.log("fullURL:" + fullURL);
+  try {
+    const response = await fetch(fullURL);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching recipes:", error);
+    return null;
+  }
+}
+
+// Get Recipes by Search Query and Include Instructions
+export async function searchRecipies(params) {
+  const baseURL = "https://api.spoonacular.com/recipes/complexSearch";
+  const queryString = constructQueryString(params); // Convert params object to query string
+  const fullURL = `${baseURL}?${queryString}`;
+  console.log("Full URL:", fullURL);
+
+  try {
+    const response = await fetch(fullURL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const data = await response.json();
+    console.log("Fetched data:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching recipes:", error);
+    return null;
+  }
 }

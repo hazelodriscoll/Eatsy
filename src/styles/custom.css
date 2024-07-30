@@ -110,7 +110,89 @@ body {
   height: auto;
 }
 
-/* Media queries for responsive design */
+.sr-card {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8c9be !important;
+  border: 1px solid hsl(0, 0%, 87%);
+  border-color: #f8c9be !important;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sr-card-image {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.sr-card-title {
+  font-weight: bold;
+  color: #56494c;
+  margin-bottom: 10px;
+}
+
+.sr-recipe-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sr-detail-item {
+  display: flex;
+  align-items: center;
+}
+
+.sr-detail-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.sr-detail-name {
+  font-weight: bold;
+  color: #56494c;
+  margin-right: 5px;
+}
+
+.sr-detail-info {
+  color: #343a40;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.sr-detail-link {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.sr-toggle-button {
+  background-color: #56494c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.sr-instructions {
+  margin-top: 10px;
+}
+
+.sr-instruction-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.sr-step-number {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.sr-step-text {
+  color: #343a40;
+}
+
 @media (max-width: 1200px) {
   .ingredientsImage img {
     max-width: 400px;
