@@ -34,6 +34,21 @@
         />
       </div>
     </div>
+    <div class="ingredientsContainer">
+      <div class="instructions-page-instructions-section">
+        <h2>Instructions</h2>
+        {#each $recipie.analyzedInstructions as instructionGroup}
+          {#each instructionGroup.steps as instruction}
+            <ul>
+              <b>{instruction.number}:</b>
+              <!-- Regex needed for formatting the steps as no space is returned
+                    after full stop -->
+              {instruction.step.replace(/\.(?=\S)/g, ". ")}
+            </ul>
+          {/each}
+        {/each}
+      </div>
+    </div>
   </div>
 {:else}
   <p>Recipe not found.</p>
