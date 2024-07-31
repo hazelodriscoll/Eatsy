@@ -1,6 +1,5 @@
 <script>
   import RecipieCard from "./RecipieCard.svelte";
-  import { setRecipie } from "../services/store.js";
   export let allRecipies;
   export let recipiesPerPage;
   export let currentPage;
@@ -29,29 +28,14 @@
       updateRecipies(currentPage + 1);
     }
   };
-
-  const setCurrentRecipie = (index) => {
-    setRecipie(recipies[index]);
-    window.location.href = "/Eatsy/ingredients";
-  };
 </script>
 
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     {#each recipies as recipie, index}
       {#if recipie && recipie.title}
         <div class="col-md-4">
-          <div class="card fixed-size-card">
-            <RecipieCard {recipie} />
-            <div class="center-content">
-              <button
-                class="btn btn-primary"
-                on:click={() => setCurrentRecipie(index)}
-              >
-                View Ingredients
-              </button>
-            </div>
-          </div>
+          <RecipieCard {recipie} />
         </div>
       {:else}
         <div>Error: Invalid recipie data</div>

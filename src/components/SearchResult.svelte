@@ -9,6 +9,21 @@
   let query = writable("");
   let loading = writable(false);
   let error = writable("");
+  let currentPage = writable(1);
+  const resultsPerPage = 10;
+  let totalResults = writable(0);
+  let selectedDiet = writable("");
+  let searchTimeout;
+
+  //Add debounce to stop multiple calls to api before typing complete
+  const debouncedSearch = debounce(handleSearch, 300);
+
+  function debounce(func, delay) {
+    return function (...args) {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
 
   onMount(async () => {
     if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
@@ -22,15 +37,16 @@
   });
 
   $: if ($query) {
-    fetchInitialResults($query);
+    fetchResults($query, ($currentPage - 1) * resultsPerPage, $selectedDiet);
   }
 
-  async function fetchInitialResults(queryValue) {
+  async function fetchResults(queryValue, offset, diet) {
     loading.set(true);
     error.set("");
     try {
-      const results = await fetchSearchResults(queryValue);
-      searchResults.set(results);
+      const response = await fetchSearchResults(queryValue, offset, diet);
+      searchResults.set(response.results);
+      totalResults.set(response.totalResults); // Assuming the API response has a 'totalResults' field
     } catch (err) {
       error.set("Failed to fetch search results.");
       searchResults.set([]);
@@ -42,35 +58,73 @@
   function handleSearch(event) {
     event.preventDefault();
     const queryValue = event.target.querySelector("#searchQuery").value;
+    const dietValue = event.target.querySelector("#dietFilter").value; // Get the selected diet value
     if (queryValue) {
       searchQuery.set(queryValue);
       localStorage.setItem("searchQuery", queryValue);
-      fetchInitialResults(queryValue);
+      selectedDiet.set(dietValue); // Set the selected diet
+      fetchResults(queryValue, 0, dietValue);
+      currentPage.set(1); // Reset to first page on new search
     }
+  }
+
+  function handleNextPage() {
+    currentPage.update((n) => n + 1);
+  }
+
+  function handlePreviousPage() {
+    currentPage.update((n) => (n > 1 ? n - 1 : n));
   }
 </script>
 
-<form class="d-flex" id="searchForm" on:submit={handleSearch}>
-  <input
-    class="form-control me-2"
-    type="search"
-    placeholder="Search"
-    aria-label="Search"
-    id="searchQuery"
-  />
-  <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
+<div>
+  <form class="d-flex" id="searchForm" on:submit={debouncedSearch}>
+    <input
+      class="form-control me-2"
+      type="text"
+      id="searchQuery"
+      placeholder="Search recipes..."
+      bind:value={$query}
+    />
+    <select id="dietFilter" bind:value={$selectedDiet}>
+      <option value="">All Diets</option>
+      <option value="vegetarian">Vegetarian</option>
+      <option value="pescetarian">Pescetarian</option>
+      <option value="vegan">Vegan</option>
+      <option value="gluten free">Gluten Free</option>
+      <option value="dairy free">Dairy Free</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
 
-{#if $loading}
-  <p>Loading...</p>
-{/if}
-{#if $error}
-  <p>{$error}</p>
-{/if}
-{#if $searchResults.length > 0}
-  <ul>
-    {#each $searchResults as result}
-      <SearchResultsCard recipie={result} />
-    {/each}
-  </ul>
-{/if}
+  {#if $loading}
+    <p>Loading...</p>
+  {:else if $error}
+    <p>{$error}</p>
+  {:else}
+    <ul>
+      {#each $searchResults as result}
+        <SearchResultsCard recipie={result} />
+      {/each}
+    </ul>
+    <div class="pagination-controls">
+      <button
+        class="btn btn-primary"
+        on:click={handlePreviousPage}
+        disabled={$currentPage === 1}
+      >
+        Previous
+      </button>
+      <span>
+        Page {$currentPage} of {Math.ceil($totalResults / resultsPerPage)}
+      </span>
+      <button
+        class="btn btn-primary"
+        on:click={handleNextPage}
+        disabled={$currentPage === Math.ceil($totalResults / resultsPerPage)}
+      >
+        Next
+      </button>
+    </div>
+  {/if}
+</div>

@@ -25,7 +25,7 @@
           alt="Time"
           class="sr-detail-icon"
         />
-        <span>{recipie.time} mins</span>
+        <span>{recipie.readyInMinutes} mins</span>
       </div>
       <div class="sr-detail-item">
         <img

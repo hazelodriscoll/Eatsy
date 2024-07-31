@@ -51,7 +51,7 @@
           </div>
           <div class="instructions-page-instructions-section">
             <h2>Instructions</h2>
-            <ol class="instructions-page-instructions-list">
+            <ul class="instructions-page-instructions-list">
               {#each $sRecipie.analyzedInstructions as instructionGroup}
                 {#each instructionGroup.steps as instruction}
                   <li>
@@ -62,7 +62,7 @@
                   </li>
                 {/each}
               {/each}
-            </ol>
+            </ul>
           </div>
         </div>
       </div>

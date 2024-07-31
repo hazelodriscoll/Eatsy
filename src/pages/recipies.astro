@@ -7,11 +7,13 @@ const params = {
   apiKey: "fb571eb0a36b417daee401017d390f99",
   "include-tags": "main course",
   number: "27",
+  includeInstructions: true,
 };
 
 let allRecipies;
 try {
   allRecipies = await getRecipies(params);
+  console.log(allRecipies);
 } catch (error) {
   console.error("Failed to fetch recipes:", error);
   allRecipies = { recipes: [] };
