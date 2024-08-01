@@ -6,7 +6,7 @@ export async function fetchSearchResults(query, offset = 0, diet = null) {
     query: query,
     addRecipeInstructions: true,
     addRecipeNutrition: true,
-    number: 10,
+    number: "9",
     offset: offset,
   };
 

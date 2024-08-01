@@ -30,9 +30,9 @@
   };
 </script>
 
-<div class="container mt-5">
-  <div class="row">
-    {#each recipies as recipie, index}
+<div class="container-fluid container-background">
+  <div class="card-group row row-cols-1 row-cols-md-3 g-4">
+    {#each recipies as recipie}
       {#if recipie && recipie.title}
         <div class="col-md-4">
           <RecipieCard {recipie} />
@@ -42,7 +42,9 @@
       {/if}
     {/each}
   </div>
-  <div class="pagination-controls">
+  <div
+    class="pagination-controls d-flex justify-content-between align-items-center mt-4"
+  >
     <button
       class="btn btn-primary"
       on:click={prevPage}
