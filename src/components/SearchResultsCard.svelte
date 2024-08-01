@@ -8,55 +8,57 @@
   };
 </script>
 
-<div class="sr-card">
-  <div class="sr-card-image">
+<div class="col">
+  <div class="card">
     <img
       src={recipie.image}
-      class="img-fluid sr-custom-rounded sr-card-img-top"
+      class="card-img-top sr-custom-rounded"
       alt={recipie.title}
     />
-  </div>
-  <div class="sr-card-body">
-    <h5 class="sr-card-title">{recipie.title}</h5>
-    <div class="sr-recipe-details">
-      <div class="sr-detail-item">
-        <img
-          src="/Eatsy/images/time-icon.png"
-          alt="Time"
-          class="sr-detail-icon"
-        />
-        <span>{recipie.readyInMinutes} mins</span>
-      </div>
-      <div class="sr-detail-item">
-        <img
-          src="/Eatsy/images/servings-icon.png"
-          alt="Servings"
-          class="sr-detail-icon"
-        />
-        <span class="sr-detail-name">Servings:</span>
-        <span class="sr-detail-info">{recipie.servings}</span>
-      </div>
-      <div class="sr-detail-item">
-        <img
-          src="/Eatsy/images/recipie-by-icon.png"
-          alt="Recipe by"
-          class="sr-detail-icon"
-        />
-        <span class="sr-detail-name">Recipe by:</span>
-        <a
-          href={recipie.spoonacularSourceUrl}
-          target="_blank"
-          class="sr-detail-info"
+
+    <div class="card-body">
+      <h5 class="card-title">{recipie.title}</h5>
+      <div class="sr-recipe-details">
+        <div class="sr-detail-item">
+          <img
+            src="/Eatsy/images/time-icon.png"
+            alt="Time"
+            class="sr-detail-icon"
+          />
+          <span class="sr-detail-name">Total Time:</span>
+          <span>{recipie.readyInMinutes} mins</span>
+        </div>
+        <div class="sr-detail-item">
+          <img
+            src="/Eatsy/images/servings-icon.png"
+            alt="Servings"
+            class="sr-detail-icon"
+          />
+          <span class="sr-detail-name">Servings:</span>
+          <span class="sr-detail-info">{recipie.servings}</span>
+        </div>
+        <div class="sr-detail-item">
+          <img
+            src="/Eatsy/images/recipie-by-icon.png"
+            alt="Recipe by"
+            class="sr-detail-icon"
+          />
+          <span class="sr-detail-name">Recipe by:</span>
+          <a
+            href={recipie.spoonacularSourceUrl}
+            target="_blank"
+            class="sr-detail-info"
+          >
+            {recipie.sourceName}
+          </a>
+        </div>
+        <button
+          class="btn btn-primary"
+          on:click={() => handleSetRecipie(recipie)}
         >
-          {recipie.sourceName}
-        </a>
+          View Full Recipie
+        </button>
       </div>
-      <button
-        class="btn btn-primary"
-        on:click={() => handleSetRecipie(recipie)}
-      >
-        View Full Recipie
-      </button>
     </div>
   </div>
 </div>

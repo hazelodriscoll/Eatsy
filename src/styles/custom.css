@@ -8,13 +8,19 @@
 }
 
 .card {
-  background-color: #f8c9be !important;
+  background-color: #fff6ec !important;
   border: 1px solid hsl(0, 0%, 87%);
   border-color: #f8c9be !important;
   border-radius: 15px;
   margin: 20px 0;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-background {
+  background-color: #f5b6a7 !important;
+  padding: 25px;
+  border-radius: 10px;
 }
 
 body {
@@ -191,6 +197,12 @@ body {
 
 .sr-step-text {
   color: #343a40;
+}
+
+.container-background {
+  background-color: #f8c9be;
+  padding: 25px;
+  border-radius: 10px;
 }
 
 @media (max-width: 1200px) {
