@@ -1,7 +1,7 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_C5xvivdp.mjs';
 import 'kleur/colors';
 import 'html-escaper';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_BDSXZ0QC.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_DyjymbOP.mjs';
 import { c as create_ssr_component, s as subscribe, e as escape, b as add_attribute, a as each, w as writable } from '../chunks/index_CvEBcJFH.mjs';
 /* empty css                                        */
 export { renderers } from '../renderers.mjs';

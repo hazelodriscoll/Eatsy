@@ -9,7 +9,15 @@ async function getRecipies(params) {
   const fullURL = `${baseURL}?${queryString}`;
   console.log("fullURL:" + fullURL);
   try {
-    const response = await fetch(fullURL);
+    const response = await fetch(fullURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
   } catch (error) {
@@ -26,12 +34,17 @@ async function searchRecipies(params) {
   console.log("Full URL:", fullURL);
 
   try {
-    const response = await fetch(fullURL);
+    const response = await fetch(fullURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log("Fetched data:", data);
+    console.log("Fetched search data:", data);
     return data;
   } catch (error) {
     console.error("Error fetching recipes:", error);

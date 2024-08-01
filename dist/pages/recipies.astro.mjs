@@ -1,8 +1,8 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_C5xvivdp.mjs';
 import 'kleur/colors';
 import 'html-escaper';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_BDSXZ0QC.mjs';
-import { g as getRecipies } from '../chunks/recipieService_B1H61WaX.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_DyjymbOP.mjs';
+import { g as getRecipies } from '../chunks/recipieService_CiqzkUG5.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Recipies = createComponent(async ($$result, $$props, $$slots) => {
