@@ -15,12 +15,15 @@
   let selectedDiet = writable([]);
   let searchTimeout;
 
-  //Add debounce to stop multiple calls to api before typing complete
-  const debouncedSearch = debounce(handleSearch, 600);
+  //Add 1 second debounce to stop multiple calls to search api before typing is complete
+  const debouncedFetchResults = debounce(fetchResults, 1000);
 
   function debounce(func, delay) {
+    //Debounce input function with same arguments
     return function (...args) {
+      //Clear existing timeout
       clearTimeout(searchTimeout);
+      //Set new timout to input delay (Currently 1 second)
       searchTimeout = setTimeout(() => func.apply(this, args), delay);
     };
   }
@@ -36,8 +39,14 @@
     }
   });
 
+  //Reactive statement to fetch results when query changes
   $: if ($query) {
-    fetchResults($query, ($currentPage - 1) * resultsPerPage, $selectedDiet);
+    //Debounce search so API is not called on every key press
+    debouncedFetchResults(
+      $query,
+      ($currentPage - 1) * resultsPerPage,
+      $selectedDiet
+    );
   }
 
   async function fetchResults(queryValue, offset, diet) {
@@ -90,7 +99,7 @@
   <form
     class="d-flex flex-column align-items-end"
     id="searchForm"
-    on:submit={debouncedSearch}
+    on:submit={handleSearch}
   >
     <div class="d-flex mb-3 w-100">
       <input

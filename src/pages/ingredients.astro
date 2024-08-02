@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import RecipieIngredients from "../components/DisplayRandomRecipie.svelte";
+import DisplayRecipie from "../components/DisplayRecipie.svelte";
 ---
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
-    <RecipieIngredients client:load />
+    <DisplayRecipie client:load />
   </div>
 </BaseLayout>
