@@ -1,10 +1,10 @@
 <script>
-  import { setSearchRecipie } from "../services/store.js";
+  import { setRecipie } from "../services/store.js";
   export let recipie;
 
-  const handleSetRecipie = (recipie) => {
-    setSearchRecipie(recipie);
-    window.location.href = "/Eatsy/instructions";
+  const setCurrentRecipie = (recipie) => {
+    setRecipie(recipie);
+    window.location.href = "/Eatsy/ingredients";
   };
 </script>
 
@@ -54,7 +54,7 @@
         </div>
         <button
           class="btn btn-primary"
-          on:click={() => handleSetRecipie(recipie)}
+          on:click={() => setCurrentRecipie(recipie)}
         >
           View Full Recipie
         </button>

@@ -29,32 +29,4 @@ export const getRecipie = () => {
   return recipie ? JSON.parse(recipie) : null;
 };
 
-const storedSearchRecipie = isBrowser
-  ? localStorage.getItem("searchRecipie")
-  : null;
-
-export const searchRecipie = writable(
-  storedSearchRecipie ? JSON.parse(storedSearchRecipie) : null
-);
-
-if (isBrowser) {
-  searchRecipie.subscribe((value) => {
-    if (value) {
-      localStorage.setItem("searchRecipie", JSON.stringify(value));
-    } else {
-      localStorage.removeItem("searchRecipie");
-    }
-  });
-}
-
-export function setSearchRecipie(data) {
-  searchRecipie.set(data);
-}
-
-export const getSearchRecipie = () => {
-  if (!isBrowser) return null;
-  const sRecipie = localStorage.getItem("searchRecipie");
-  return sRecipie ? JSON.parse(sRecipie) : null;
-};
-
 export const searchQuery = writable("");

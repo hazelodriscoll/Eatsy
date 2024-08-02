@@ -1,7 +1,7 @@
 <script>
   import { writable } from "svelte/store";
   import { getRecipies } from "../services/recipieService.js";
-  import RecipieCard from "./RecipieCard.svelte";
+  import ModalRecipie from "./ModalRecipie.svelte";
 
   let recipies = writable([]);
   let currentRecipieIndex = writable(0);
@@ -40,23 +40,28 @@
   <div class="modal fade show" tabindex="-1" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Random Recipe</h5>
+        <div class="modal-header modal-background">
           <button type="button" class="btn-close" on:click={closeModal}
           ></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-body">
           {#if $recipies.length > 0}
-            <RecipieCard recipie={$recipies[$currentRecipieIndex]} />
+            <ModalRecipie recipie={$recipies[$currentRecipieIndex]} />
           {:else}
             <p>Loading...</p>
           {/if}
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" on:click={nextRecipie}>
-            Not Happy
+        <div class="modal-footer modal-background">
+          <button class="btn btn-secondary" on:click={closeModal}>
+            Close
           </button>
-          <button class="btn btn-primary" on:click={closeModal}> Close </button>
+          <button class="btn btn-primary" on:click={nextRecipie}>
+            Roll Again <img
+              src="/Eatsy/images/dice.png"
+              alt="dice"
+              class="detail-icon"
+            />
+          </button>
         </div>
       </div>
     </div>
