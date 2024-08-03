@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RandomItem from "../components/RandomItem.svelte";
 import { getRecipies } from "../services/recipieService.js";
-import RecipeCard from "../components/RecipieCard.svelte";
+import RecipieCard from "../components/RecipieCard.svelte";
 
 // Assuming you have an image file at src/assets/your-image.jpg
 const imageUrl = "/Eatsy/images/eatsyLogo.svg";
@@ -45,11 +45,11 @@ const recipies = await getRecipies(params);
 
   <div slot="main" class="container mt-5 container-background">
     <h3 class="display-4">Popular Recipes</h3>
-    <div class="row">
+    <div class="card-group row row-cols-1 row-cols-md-3 g-4">
       {
         recipies.recipes.map((recipie) => (
           <div class="col-md-4">
-            <RecipeCard recipie={recipie} client:load />
+            <RecipieCard recipie={recipie} client:load />
           </div>
         ))
       }
