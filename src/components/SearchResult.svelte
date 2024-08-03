@@ -3,7 +3,7 @@
   import { fetchSearchResults } from "../services/fetchSearchResults.js";
   import { writable } from "svelte/store";
   import { searchQuery } from "../services/store.js";
-  import SearchResultsCard from "../components/SearchResultsCard.svelte";
+  import RecipieCard from "./RecipieCard.svelte";
 
   let searchResults = writable([]);
   let query = writable("");
@@ -119,6 +119,7 @@
           id="vegetarianCheckbox"
           value="vegetarian"
           on:change={() => toggleDiet("vegetarian")}
+          checked={$selectedDiet.includes("vegetarian")}
         />
         <label class="form-check-label" for="vegetarianCheckbox"
           >Vegetarian</label
@@ -131,6 +132,7 @@
           id="pescetarianCheckbox"
           value="pescetarian"
           on:change={() => toggleDiet("pescetarian")}
+          checked={$selectedDiet.includes("pescetarian")}
         />
         <label class="form-check-label" for="pescetarianCheckbox"
           >Pescetarian</label
@@ -143,6 +145,7 @@
           id="veganCheckbox"
           value="vegan"
           on:change={() => toggleDiet("vegan")}
+          checked={$selectedDiet.includes("vegan")}
         />
         <label class="form-check-label" for="veganCheckbox">Vegan</label>
       </div>
@@ -153,6 +156,7 @@
           id="glutenFreeCheckbox"
           value="gluten free"
           on:change={() => toggleDiet("gluten free")}
+          checked={$selectedDiet.includes("gluten free")}
         />
         <label class="form-check-label" for="glutenFreeCheckbox"
           >Gluten Free</label
@@ -165,6 +169,7 @@
           id="dairyFreeCheckbox"
           value="dairy free"
           on:change={() => toggleDiet("dairy free")}
+          checked={$selectedDiet.includes("dairy free")}
         />
         <label class="form-check-label" for="dairyFreeCheckbox"
           >Dairy Free</label
@@ -180,7 +185,7 @@
     {:else}
       <div class="card-group row row-cols-1 row-cols-md-3 g-4">
         {#each $searchResults as result}
-          <SearchResultsCard recipie={result} />
+          <RecipieCard recipie={result} />
         {/each}
       </div>
 
