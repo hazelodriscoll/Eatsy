@@ -6,15 +6,28 @@
     setRecipie(recipie);
     window.location.href = "/Eatsy/ingredients";
   };
+  const fallbackImage = "/Eatsy/images/fallbackImage.png";
+
+  let isFav = false;
+  let showAddedPopup = false;
+  let showRemovedPopup = false;
 </script>
 
 <div class="col">
   <div class="card">
-    <img
-      src={recipie.image}
-      class="card-img-top sr-custom-rounded"
-      alt={recipie.title}
-    />
+    <!-- Use fallback image if API does not return an image -->
+    {#if recipie.image}
+      <img
+        src={recipie.image}
+        class="card-img-top sr-custom-rounded"
+        alt={recipie.title}
+      />{:else}
+      <img
+        src={fallbackImage}
+        class="card-img-top sr-custom-rounded"
+        alt={recipie.title}
+      />
+    {/if}
 
     <div class="card-body">
       <h5 class="card-title">{recipie.title}</h5>

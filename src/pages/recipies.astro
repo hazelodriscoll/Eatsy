@@ -15,21 +15,21 @@ try {
   allRecipies = await getRecipies(params);
   console.log(allRecipies);
 } catch (error) {
-  console.error("Failed to fetch recipes:", error);
-  allRecipies = { recipes: [] };
+  console.error("Failed to fetch recipies:", error);
+  allRecipies = { recipies: [] };
 }
 
-const recipesPerPage = 9;
+const recipiesPerPage = 9;
 let currentPage = 1;
 ---
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
-    <h3 class="display-4">Browse Recipes</h3>
+    <h3 class="display-4">Browse Recipies</h3>
     <RecipiePagination
       client:only="svelte"
       allRecipies={allRecipies}
-      recipiesPerPage={recipesPerPage}
+      recipiesPerPage={recipiesPerPage}
       currentPage={currentPage}
     />
   </div>
