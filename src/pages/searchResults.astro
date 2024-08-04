@@ -5,7 +5,10 @@ import SearchResult from "../components/SearchResult.svelte";
 
 <BaseLayout
   ><div slot="main" class="container mt-5">
-    <h3 class="display-4">Search Results</h3>
+    <div class="title-button-container">
+      <h3 class="display-4">Search Results</h3>
+      <img src="/Eatsy/images/retroBook.png" alt="retro book" />
+    </div>
     <SearchResult client:load />
   </div>
 </BaseLayout>

@@ -25,7 +25,10 @@ let currentPage = 1;
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
-    <h3 class="display-4">Browse Recipies</h3>
+    <div class="title-button-container">
+      <h3 class="display-4">Browse Recipies</h3>
+      <img src="/Eatsy/images/eggsAndBaconImage.png" alt="eggs and bacon" />
+    </div>
     <RecipiePagination
       client:only="svelte"
       allRecipies={allRecipies}
