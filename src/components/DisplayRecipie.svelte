@@ -8,6 +8,8 @@
   } from "../services/favourite.js";
 
   const recipie = writable(null);
+  const fallbackImage = "/Eatsy/images/fallbackImage.png";
+
   let isFav = false;
   let showAddedPopup = false;
   let showRemovedPopup = false;
@@ -112,11 +114,18 @@
           {/if}
         </div>
         <div class="ingredientsImage col-md-8">
-          <img
-            src={$recipie.image}
-            alt={$recipie.title}
-            class="ingredientsImage custom-rounded"
-          />
+          {#if $recipie.image}
+            <img
+              src={$recipie.image}
+              class="ingredientsImage custom-rounded"
+              alt={$recipie.title}
+            />{:else}
+            <img
+              src={fallbackImage}
+              class="ingredientsImage custom-rounded"
+              alt={$recipie.title}
+            />
+          {/if}
         </div>
       </div>
       <div class="row">

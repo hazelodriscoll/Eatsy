@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FavouritesList from "../components/FavouritesList.svelte";
+---
+
+<BaseLayout>
+  <div slot="main">
+    <FavouritesList client:only="svelte" />
+  </div>
+</BaseLayout>
