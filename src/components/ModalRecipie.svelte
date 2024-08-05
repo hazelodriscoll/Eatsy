@@ -1,18 +1,34 @@
 <script>
   import { setRecipie } from "../services/store.js";
   export let recipie;
+
+  const fallbackImage = "/Eatsy/images/fallbackImage.png";
+
   const setCurrentRecipie = (recipie) => {
     setRecipie(recipie);
     window.location.href = "/Eatsy/ingredients";
   };
+
+  function handleImageError(event) {
+    event.target.src = fallbackImage;
+  }
 </script>
 
 <div class="container">
-  <img
-    src={recipie.image}
-    class="img-fluid custom-rounded img-top"
-    alt={recipie.title}
-  />
+  <!-- Use fallback image if API does not return an image -->
+  {#if recipie.image}
+    <img
+      src={recipie.image}
+      class="img-fluid custom-rounded img-top"
+      alt={recipie.title}
+      on:error={handleImageError}
+    />{:else}
+    <img
+      src={fallbackImage}
+      class="img-fluid custom-rounded img-top"
+      alt={recipie.title}
+    />
+  {/if}
 
   <h5 class="modal-header">{recipie.title}</h5>
   <div class="recipe-details">

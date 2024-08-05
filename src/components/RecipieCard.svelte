@@ -31,6 +31,10 @@
     isFav = !isFav;
   };
 
+  function handleImageError(event) {
+    event.target.src = fallbackImage;
+  }
+
   // On mount, check if recipie is favourite and set isFav accordingly
   onMount(() => {
     if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
@@ -47,6 +51,7 @@
         src={recipie.image}
         class="card-img-top sr-custom-rounded"
         alt={recipie.title}
+        on:error={handleImageError}
       />{:else}
       <img
         src={fallbackImage}
@@ -137,6 +142,11 @@
               />
             </div>
           {/if}
+        </div>
+        <div class="sr-detail-item badge-container">
+          {#each recipie.diets as diet}
+            <span class="badge rounded-pill text-bg-secondary">{diet}</span>
+          {/each}
         </div>
       </div>
     </div>

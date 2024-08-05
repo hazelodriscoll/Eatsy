@@ -47,6 +47,10 @@
       ? numAmount.toString()
       : numAmount.toFixed(1);
   }
+
+  function handleImageError(event) {
+    event.target.src = fallbackImage;
+  }
 </script>
 
 <main>
@@ -119,6 +123,7 @@
               src={$recipie.image}
               class="ingredientsImage custom-rounded"
               alt={$recipie.title}
+              on:error={handleImageError}
             />{:else}
             <img
               src={fallbackImage}

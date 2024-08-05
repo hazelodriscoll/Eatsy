@@ -148,6 +148,7 @@ body {
 .sr-detail-item {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .sr-detail-icon {
@@ -197,6 +198,11 @@ body {
 
 .sr-step-text {
   color: #343a40;
+}
+
+.badge-container {
+  gap: 0.5em;
+  margin-top: 0.5em;                   $white;
 }
 
 .container-background {
