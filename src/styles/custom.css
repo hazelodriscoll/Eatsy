@@ -205,6 +205,12 @@ body {
   margin-top: 0.5em;
 }
 
+.modal-badge-container {
+  gap: 0.5em;
+  margin-top: 0.5em;
+  justify-content: center;
+}
+
 .container-background {
   background-color: #f8c9be;
   padding: 25px;
@@ -247,6 +253,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.modal-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .popup {
