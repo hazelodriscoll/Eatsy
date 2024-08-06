@@ -17,7 +17,7 @@
 <main>
   <div class="container">
     <div class="title-button-container">
-      <h3 class="display-4">Favourite Recipies</h3>
+      <h1 class="display-4">Favourite Recipies</h1>
       <img
         src="/Eatsy/images/favouritesHeaderImage.png"
         alt="peanut butter and jelly"

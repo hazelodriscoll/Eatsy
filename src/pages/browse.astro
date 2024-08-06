@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div slot="main" class="container mt-5">
+    <div class="title-button-container">
+      <h1 class="display-4">Browse Recipies</h1>
+      <img src="/Eatsy/images/hotdogHeaderImage.png" alt="hotdog" />
+    </div>
+    <div class="container-fluid container-background">
+      <h5>By Meal Type:</h5>
+      <div class="recipe-options">
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/breakfast.png"
+            alt="Breakfast"
+            class="recipe-option custom-rounded"
+            data-option="breakfast"
+          />
+          <div class="overlay-text">Breakfast</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/lunch.png"
+            alt="Lunch"
+            class="recipe-option custom-rounded"
+            data-option="lunch"
+          />
+          <div class="overlay-text">Lunch</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/dinner.png"
+            alt="Dinner"
+            class="recipe-option custom-rounded"
+            data-option="dinner"
+          />
+          <div class="overlay-text">Dinner</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/dessert.png"
+            alt="Dessert"
+            class="recipe-option custom-rounded"
+            data-option="dessert"
+          />
+          <div class="overlay-text">Dessert</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/drinks.png"
+            alt="Drinks"
+            class="recipe-option custom-rounded"
+            data-option="drinks"
+          />
+          <div class="overlay-text">Drinks</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/browseAll.png"
+            alt="Browse All"
+            class="recipe-option custom-rounded"
+            data-option=""
+          />
+          <div class="overlay-text">Browse All</div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid container-background">
+      <h5>By Diet:</h5>
+      <div class="recipe-options">
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/vegetarian.png"
+            alt="Vegetarian"
+            class="recipe-option custom-rounded"
+            data-option="vegetarian"
+          />
+          <div class="overlay-text">Vegetarian</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/vegan.png"
+            alt="Vegan"
+            class="recipe-option custom-rounded"
+            data-option="vegan"
+          />
+          <div class="overlay-text">Vegan</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/pescetarian.png"
+            alt="Pescetarian"
+            class="recipe-option custom-rounded"
+            data-option="pescetarian"
+          />
+          <div class="overlay-text">Pescetarian</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/dairyFree.png"
+            alt="Dairy Free"
+            class="recipe-option custom-rounded"
+            data-option="dairy free"
+          />
+          <div class="overlay-text">Dairy Free</div>
+        </div>
+        <div class="recipe-option-container">
+          <img
+            src="/Eatsy/images/glutenFree.png"
+            alt="Gluten free"
+            class="recipe-option custom-rounded"
+            data-option="gluten free"
+          />
+          <div class="overlay-text">Gluten Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".recipe-option").forEach((img) => {
+      img.addEventListener("click", function (event) {
+        const selectedOption = (event.target as HTMLImageElement).getAttribute(
+          "data-option"
+        );
+        console.log(selectedOption);
+
+        // Save the selected option to session storage
+        sessionStorage.setItem("selectedOption", selectedOption);
+        window.location.href = "/Eatsy/recipies";
+      });
+    });
+  });
+</script>
+<style>
+  .recipe-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .recipe-option-container {
+    position: relative;
+    display: inline-block;
+  }
+  .recipe-option {
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(100, 98, 98, 0.5);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+  }
+</style>

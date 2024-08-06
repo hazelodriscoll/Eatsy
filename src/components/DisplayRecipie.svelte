@@ -58,7 +58,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 title-button-container">
-          <h3 class="display-4">{$recipie.title} Recipie</h3>
+          <h1 class="display-4">{$recipie.title} Recipie</h1>
           <div>
             <button class="image-button" on:click={toggleFavourite}>
               {#if isFav}
