@@ -6,7 +6,6 @@
     getSelectedOptions,
     addSelectedOption,
     removeSelectedOption,
-    isSelectedOption,
   } from "../services/selectedOption.js";
   export let recipiesPerPage;
   export let currentPage;
@@ -131,7 +130,10 @@
 
 <div class="container-fluid container-background">
   <div class="title-button-container">
-    <h4 class="display-4">
+    <h4
+      class="bg-secondary text-white px-2 py-1 rounded"
+      style="display: inline-block;"
+    >
       {selectedOptions.map(capitalizeFirstLetter).join(", ")}
     </h4>
     <div class="button-container d-flex">
@@ -149,9 +151,9 @@
         >
           Add Options
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">
           {#each availableOptions as option}
-            <li>
+            <li class="mb-2">
               <div class="form-check">
                 <input
                   class="form-check-input"
