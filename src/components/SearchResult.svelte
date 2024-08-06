@@ -29,9 +29,12 @@
   }
 
   onMount(async () => {
-    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+    if (
+      typeof window !== "undefined" &&
+      typeof sessionStorage !== "undefined"
+    ) {
       console.log("Running in the browser");
-      const storedQuery = localStorage.getItem("searchQuery");
+      const storedQuery = sessionStorage.getItem("searchQuery");
       console.log("Stored query:", storedQuery);
       if (storedQuery) {
         query.set(storedQuery);
@@ -69,7 +72,7 @@
     const queryValue = event.target.querySelector("#searchQuery").value;
     if (queryValue) {
       searchQuery.set(queryValue);
-      localStorage.setItem("searchQuery", queryValue);
+      sessionStorage.setItem("searchQuery", queryValue);
       const dietValue = $selectedDiet.join(",");
       fetchResults(queryValue, 0, dietValue);
       currentPage.set(1); // Reset to first page on new search

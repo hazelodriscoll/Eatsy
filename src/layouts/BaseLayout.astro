@@ -90,7 +90,7 @@ import "../styles/custom.css";
           document.getElementById("searchQuery") as HTMLInputElement
         ).value;
         if (query) {
-          localStorage.setItem("searchQuery", query);
+          sessionStorage.setItem("searchQuery", query);
           window.location.href = "/Eatsy/searchResults";
         }
       });
