@@ -8,8 +8,8 @@
 }
 
 .btn-secondary {
-  background-color: #6aaea7 !important;
-  border-color: #6aaea7 !important;
+  background-color: #ed7d62 !important;
+  border-color: #ed7d62 !important;
 }
 
 .card {
@@ -20,6 +20,15 @@
   margin: 20px 0;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Apply hover effects only on devices with larger screens */
+@media (min-width: 768px) {
+  .card:hover {
+    transform: scale(1.02); /* Slightly enlarge the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
 }
 
 .home-background {
@@ -60,6 +69,13 @@ body {
 .detail-icon {
   width: 30px;
   height: 30px;
+  vertical-align: middle;
+  margin-right: 2px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 0;
+}
+
+.detail-icon-original {
   vertical-align: middle;
   margin-right: 2px;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -216,6 +232,31 @@ body {
   justify-content: center;
 }
 
+.recipe-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.recipe-option-container {
+  position: relative;
+  display: inline-block;
+}
+.recipe-option {
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(100, 98, 98, 0.5);
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+}
+
 .container-background {
   background-color: #f8c9be;
   padding: 25px;
@@ -278,6 +319,49 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   animation: fadeInOut 2s;
   white-space: nowrap;
+}
+
+.intro,
+.story,
+.development,
+.future-plans,
+.call-to-action {
+  margin-bottom: 2rem;
+}
+
+.call-to-action {
+  background-color: #83c5be;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.call-to-action a {
+  color: white;
+  text-decoration: underline;
+}
+
+.story-with-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-image {
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
 }
 
 @keyframes fadeInOut {

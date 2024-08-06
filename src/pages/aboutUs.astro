@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div slot="main" class="container mt-5">
+    <div class="title-button-container">
+      <h1 class="display-4">About Us</h1>
+      <img src="/Eatsy/images/iceCreamImage.png" alt="ice cream" />
+    </div>
+
+    <div class="container container-background">
+      <!-- Section 1: Story with Eatsy Image -->
+      <div class="row">
+        <div class="col-md-6">
+          <section class="story-with-image">
+            <h2
+              class="bg-secondary text-white px-2 py-1 rounded"
+              style="display: inline-block;"
+            >
+              The Story Behind Eatsy
+            </h2>
+            <p>
+              Eatsy began with a simple yet common problem: figuring out what to
+              make for dinner. As someone who loves cooking, designing and
+              coding - I wanted to work on a project that could incorporate all
+              three and make meal planning easier and more enjoyable.
+              <br /><br />
+              While working on Eatsy, I dove deep into front-end development, experimenting
+              with new technologies and focusing on making the site as user-friendly
+              as possible. It’s been a rewarding journey of learning and creating
+              something that I hope will bring a bit more ease and inspiration to
+              your meal planning!
+            </p>
+          </section>
+        </div>
+        <div class="col-md-6 image-container">
+          <img
+            src="/Eatsy/images/thankYou.png"
+            alt="Thank you message"
+            class="story-image"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-background">
+      <!-- Section 2: Development Journey and Call to Action -->
+      <div class="row">
+        <div class="col-md-6">
+          <section class="development-journey">
+            <h2
+              class="bg-secondary text-white px-2 py-1 rounded"
+              style="display: inline-block;"
+            >
+              My Development Journey
+            </h2>
+            <p>
+              This project has been a fantastic learning experience. From
+              designing the user interface to implementing interactive features,
+              I’ve had the chance to experiment with modern front-end
+              technologies and frameworks. Here are some highlights:
+            </p>
+            <ul>
+              <li>
+                Developed using Astro, Svelte, HTML, CSS, Bootstrap, and
+                JavaScript
+              </li>
+              <li>
+                Implemented responsive design for a seamless experience on all
+                devices
+              </li>
+              <li>
+                Integrated APIs to provide dynamic meal ideas and recipe details
+              </li>
+              <li>
+                Applied best practices in UI/UX design to enhance usability
+              </li>
+              <li>Found delicious new recipies</li>
+            </ul>
+          </section>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <section class="call-to-action">
+            <h2>Get Involved</h2>
+            <p>
+              I’d love to hear your feedback and suggestions! Feel free to reach
+              out via the contact form below or connect with me on social media.
+              Your input helps make Eatsy better for everyone.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

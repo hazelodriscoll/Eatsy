@@ -29,22 +29,37 @@ const recipies = await getRecipies(params);
         />
       </div>
       <div class="col-md-6">
-        <div class="jumbotron p-5 custom-rounded">
-          <h1 class="display-4">Welcome to Eatsy</h1>
-          <p class="lead text-center">Food for Thought</p>
+        <div class="jumbotron p-5 custom-rounded bg-light shadow">
+          <h1 class="display-4 text-center mb-2">Welcome to Eatsy</h1>
+          <div
+            class="text-center mt-2 mb-4 d-flex justify-content-center align-items-center"
+          >
+            <span class="lead">Food for Thought </span>
+            <img
+              src="/Eatsy/images/thoughtIcon.png"
+              alt="Thought Icon"
+              class="detail-icon-original"
+            />
+          </div>
           <hr class="my-4" />
-          <p class="detail-info">
-            Need dinner inspiration? Let us do the thinking! <br /> Click below for
-            a random tasty suggestion or explore recipies for endless inspiration.
+          <p class="detail-info text-center fs-6">
+            Can't decide what to eat? Let us inspire you! <br />
+            Click below for a random tasty suggestion or browse our recipes for endless
+            inspiration.
           </p>
-          <RandomItem client:load />
+          <div class="d-flex justify-content-center mt-4">
+            <RandomItem client:load />
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div slot="main" class="container mt-5 container-background">
-    <h2 class="display-4">Popular Recipes</h2>
+    <div class="title-button-container">
+      <h2 class="display-4">Popular Recipes</h2>
+      <a href="/Eatsy/browse" class="btn btn-secondary btn-lg">See More</a>
+    </div>
     <div class="card-group row row-cols-1 row-cols-md-3 g-4">
       {
         recipies.recipes.map((recipie) => (
@@ -54,5 +69,5 @@ const recipies = await getRecipies(params);
         ))
       }
     </div>
-  </div></BaseLayout
->
+  </div>
+</BaseLayout>

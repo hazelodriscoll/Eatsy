@@ -31,7 +31,7 @@
 <!-- Button to fetch random recipes -->
 <div class="center-content">
   <button class="btn btn-primary btn-lg" on:click={fetchRandomRecipies}>
-    Take Me to Random Recipie
+    Get Random Recipie
   </button>
 </div>
 
