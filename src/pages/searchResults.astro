@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchResult from "../components/SearchResult.svelte";
+import BackToTopButton from "../components/BackToTopButton.astro";
 ---
 
 <BaseLayout>
@@ -10,5 +11,6 @@ import SearchResult from "../components/SearchResult.svelte";
       <img src="/Eatsy/images/retroBook.png" alt="retro book" />
     </div>
     <SearchResult client:load />
+     <BackToTopButton />
   </div>
 </BaseLayout>

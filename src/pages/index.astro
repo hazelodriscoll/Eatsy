@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import RandomItem from "../components/RandomItem.svelte";
 import { getRecipies } from "../services/recipieService.js";
 import RecipieCard from "../components/RecipieCard.svelte";
+import BackToTopButton from "../components/BackToTopButton.astro";
 
 // Assuming you have an image file at src/assets/your-image.jpg
 const imageUrl = "/Eatsy/images/eatsyLogo.svg";
@@ -19,7 +20,8 @@ const recipies = await getRecipies(params);
 ---
 
 <BaseLayout>
-  <div slot="main" class="container-fluid mt-5 home-background">
+  <div slot="main">
+  <div class="container-fluid mt-5 home-background">
     <div class="row align-items-center">
       <div class="col-md-6">
         <img
@@ -55,7 +57,7 @@ const recipies = await getRecipies(params);
     </div>
   </div>
 
-  <div slot="main" class="container mt-5 container-background">
+  <div class="container mt-5 container-background">
     <div class="title-button-container">
       <h2 class="display-4">Popular Recipes</h2>
       <a href="/Eatsy/browse" class="btn btn-secondary btn-lg">See More</a>
@@ -69,5 +71,7 @@ const recipies = await getRecipies(params);
         ))
       }
     </div>
+  </div>
+  <BackToTopButton />
   </div>
 </BaseLayout>
