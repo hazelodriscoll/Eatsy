@@ -15,7 +15,7 @@
 
   const setCurrentRecipie = (recipie) => {
     setRecipie(recipie);
-    window.location.href = "/Eatsy/ingredients";
+    window.location.href = "/Eatsy/displayRecipie";
   };
 
   function handleImageError(event) {
