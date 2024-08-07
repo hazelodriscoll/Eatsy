@@ -86,7 +86,7 @@
         // Store the fetched recipies in session storage using key
         sessionStorage.setItem(storageKey, JSON.stringify(allRecipies));
       }
-
+      currentPage = 1;
       // Slice the recipies based on the current page
       recipies = getPaginatedRecipies(currentPage);
 
