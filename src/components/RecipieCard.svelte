@@ -10,7 +10,7 @@
 
   const setCurrentRecipie = (recipie) => {
     setRecipie(recipie);
-    window.location.href = "/Eatsy/ingredients";
+    window.location.href = "/Eatsy/displayRecipie";
   };
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
   let isFav = false;
