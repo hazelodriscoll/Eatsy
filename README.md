@@ -1,6 +1,6 @@
 # Eatsy
 
-Welcome to **Eatsy**. This project was built using Astro and Svelte, and leveraging Bootstrap for responsive design. Eatsy offers a variety of features to simplify your meal planning and recipie discovery process.
+Welcome to **Eatsy**. This project was built using Astro and Svelte, and leveraging Bootstrap for a responsive design. Eatsy offers a variety of features to simplify your meal planning and recipie discovery process which are laid out below.
 
 ## 🚀 Getting Started
 
@@ -108,6 +108,10 @@ For this project, I used GitHub to handle everything, including code, documentat
 - **GitHub Issues and Projects**: I used GitHub’s “Issues” to keep track of tasks and “Projects” to setup a Kanban board and manage them.
 
 These practices helped me keep the project on track and organized throughout its development.
+
+## Reports 📊
+
+Lighthouse and Accessibility reports can be found in the `docs` folder.
 
 ## 📞 Contact
 
