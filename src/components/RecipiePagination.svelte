@@ -17,6 +17,9 @@
   let selectedOptions = getSelectedOptions();
   let isLoading = false;
 
+  // Flag to stop multiple fetches at once due to reactive statement
+  let fetchInProgress = false;
+
   // Function to update the URL with the selected option
   const updateURL = (options) => {
     if (options) {
@@ -39,6 +42,9 @@
 
   // Fetch recipes from API or session storage
   const fetchRecipies = async (refresh = false) => {
+    // Prevent multiple calls by returning if fetch is already in progress (Bug fix)
+    if (fetchInProgress) return; // Prevent multiple calls
+    fetchInProgress = true;
     // Show loading spinner while fetching recipes
     isLoading = true;
     try {
@@ -91,31 +97,35 @@
     } finally {
       // Hide loading spinner after successfully retrieving recipies
       isLoading = false;
+      fetchInProgress = false;
     }
   };
 
   // Update recipes only when selectedOptions change and are not in session storage
   // Using svelte reactive statement
+  // When selectedOptions change, fetch new recipies if not already stored in session storage
   $: {
-    // When selectedOptions change, fetch new recipies if not already stored in session storage
-    if (selectedOptions.length > 0) {
-      //Check storage key
-      const sortedOptions = selectedOptions.slice().sort().join("_");
-      const storageKey = `allRecipies_${sortedOptions}`;
-      const storedRecipies = sessionStorage.getItem(storageKey);
+    // Create a string storage key based on the selected options
+    const sortedOptions = selectedOptions.slice().sort().join("_");
+    const storageKey = `allRecipies_${sortedOptions}`;
+    const storedRecipies = sessionStorage.getItem(storageKey);
 
-      // If no stored recipies, fetch new recipies
-      if (!storedRecipies) {
-        fetchRecipies(true);
-      } else {
-        // Else get the stored recipies from session storage
+    // Handle different scenarios based on whether recipes are found in session storage
+    if (selectedOptions.length > 0) {
+      if (storedRecipies) {
+        // If recipes are stored in session storage, use them
         allRecipies = JSON.parse(storedRecipies);
-        recipies = getPaginatedRecipies(currentPage);
+      } else {
+        // If no recipes in session storage, fetch from API
+        fetchRecipies(true);
       }
     } else {
       // Handle the case with no current selected options
       fetchRecipies(true);
     }
+
+    // Update the recipes list based on current page
+    recipies = getPaginatedRecipies(currentPage);
   }
 
   // Back to top when clicking next or previous page
@@ -174,11 +184,6 @@
     "dessert",
     "drinks",
   ];
-
-  // On mount of component to the DOM, do inital fetch of recipies
-  onMount(() => {
-    fetchRecipies();
-  });
 </script>
 
 <!--HTML code for the RecipiePagination component-->
