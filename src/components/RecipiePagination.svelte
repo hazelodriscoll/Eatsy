@@ -95,6 +95,7 @@
   // Call updateURL whenever selectedOptions changes
   $: updateURL(selectedOptions);
 
+  // Fetch recipies whenever selectedOptions changes
   $: fetchRecipies(true);
 
   // Function to capitalize the first letter of selectedOptions

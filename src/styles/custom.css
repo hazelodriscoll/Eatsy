@@ -8,8 +8,8 @@
 }
 
 .btn-secondary {
-  background-color: #ed7d62 !important;
-  border-color: #ed7d62 !important;
+  background-color: #83c5be !important;
+  border-color: #83c5be !important;
 }
 
 .card {
@@ -20,7 +20,9 @@
   margin: 20px 0;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 /* Apply hover effects only on devices with larger screens */
@@ -350,18 +352,64 @@ body {
 .story-image {
   border-radius: 0.5rem;
   margin-top: 1rem;
+  height: 100%;
+  width: 100%;
 }
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .image-container img {
   max-width: 100%;
   height: auto;
+}
+
+.contact-form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-response {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.form-response.success {
+  color: green;
+}
+
+.form-response.error {
+  color: red;
+}
+
+.bg-secondary {
+  background-color: #83c5be !important;
+  border-color: #83c5be !important;
+  color: white !important;
+  padding: 1rem;
+}
+
+.development-journey h2,
+.development-journey h5 {
+  margin-bottom: 15px;
+}
+
+.development-journey p,
+.development-journey ul {
+  margin-top: 0;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
 }
 
 @keyframes fadeInOut {
