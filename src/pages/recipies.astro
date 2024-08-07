@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecipiePagination from "../components/RecipiePagination.svelte";
+import BackToTopButton from "../components/BackToTopButton.astro";
 
 const recipiesPerPage = 9;
 let currentPage = 1;
@@ -17,5 +18,6 @@ let currentPage = 1;
       recipiesPerPage={recipiesPerPage}
       currentPage={currentPage}
     />
+     <BackToTopButton />
   </div>
 </BaseLayout>

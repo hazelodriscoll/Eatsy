@@ -7,7 +7,7 @@
 
   let searchResults = writable([]);
   let query = writable("");
-  let loading = writable(false);
+  let loading = false;
   let error = writable("");
   let currentPage = writable(1);
   const resultsPerPage = 9;
@@ -15,19 +15,18 @@
   let selectedDiet = writable([]);
   let searchTimeout;
 
-  //Add 1 second debounce to stop multiple calls to search api before typing is complete
+  // Add 1 second debounce to stop multiple calls to search API before typing is complete
   const debouncedFetchResults = debounce(fetchResults, 1000);
 
+  // Timeout while user is typing to avoid multiple API calls
   function debounce(func, delay) {
-    //Debounce input function with same arguments
     return function (...args) {
-      //Clear existing timeout
       clearTimeout(searchTimeout);
-      //Set new timout to input delay (Currently 1 second)
       searchTimeout = setTimeout(() => func.apply(this, args), delay);
     };
   }
 
+  // Load the stored query from session storage if it exists
   onMount(async () => {
     if (
       typeof window !== "undefined" &&
@@ -42,18 +41,18 @@
     }
   });
 
-  //Reactive statement to fetch results when query changes
+  // Reactive statement to fetch results when query changes with debounce to give time for typing
   $: if ($query) {
-    //Debounce search so API is not called on every key press
     debouncedFetchResults(
       $query,
+      // Calculate the offset based on the current page and results per page
       ($currentPage - 1) * resultsPerPage,
       $selectedDiet
     );
   }
-
+  // Fetch search results from the API
   async function fetchResults(queryValue, offset, diet) {
-    loading.set(true);
+    loading = true;
     error.set("");
     try {
       const response = await fetchSearchResults(queryValue, offset, diet);
@@ -63,10 +62,12 @@
       error.set("Failed to fetch search results.");
       searchResults.set([]);
     } finally {
-      loading.set(false);
+      // Set loading to false after results are fetched
+      loading = false;
     }
   }
 
+  // Handle search form submission
   function handleSearch(event) {
     event.preventDefault();
     const queryValue = event.target.querySelector("#searchQuery").value;
@@ -79,14 +80,22 @@
     }
   }
 
+  // Scroll to top of the page for next and previous
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   function handleNextPage() {
     currentPage.update((n) => n + 1);
+    scrollToTop();
   }
 
   function handlePreviousPage() {
     currentPage.update((n) => (n > 1 ? n - 1 : n));
+    scrollToTop();
   }
 
+  // Function to toggle diet filters
   function toggleDiet(diet) {
     selectedDiet.update((diets) => {
       if (diets.includes(diet)) {
@@ -98,6 +107,7 @@
   }
 </script>
 
+<!-- Search results component -->
 <div class="container-fluid container-background">
   <form
     class="d-flex flex-column align-items-end"
@@ -105,6 +115,7 @@
     on:submit={handleSearch}
   >
     <div class="d-flex mb-3 w-100">
+      <!-- Search bar with bind on query value -->
       <input
         class="form-control me-2"
         type="text"
@@ -114,6 +125,7 @@
       />
       <button class="btn btn-primary" type="submit">Search</button>
     </div>
+    <!-- Filters with checked value depending if selectedDiet includes value -->
     <div id="dietFilter" class="d-flex flex-wrap justify-content-start">
       <div class="form-check form-check-inline">
         <input
@@ -180,18 +192,35 @@
       </div>
     </div>
   </form>
+
+  <!-- Spinner to show while loading -->
+  {#if loading}
+    <div class="text-center my-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  {/if}
+  <!-- Display error if search fails -->
   <div class="container">
-    {#if $loading}
-      <p>Loading...</p>
-    {:else if $error}
-      <p>{$error}</p>
+    {#if $error}
+      <!-- Show an error message if fetching data fails -->
+      <div class="alert alert-danger" role="alert">
+        {$error}
+      </div>
+    {:else if $searchResults.length === 0}
+      <!-- Show a message when no recipes -->
+      <div class="alert alert-warning text-center" role="alert">
+        No recipes found. Try making a new search.
+      </div>
     {:else}
+      <!-- Display Recipies with recipie card component -->
       <div class="card-group row row-cols-1 row-cols-md-3 g-4">
         {#each $searchResults as result}
           <RecipieCard recipie={result} />
         {/each}
       </div>
-
+      <!-- Pagination controls -->
       <div
         class="pagination-controls d-flex justify-content-between align-items-center mt-4"
       >

@@ -118,10 +118,16 @@
     }
   }
 
+  // Back to top when clicking next or previous page
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Function to update the recipies based on the current page
   const updateRecipies = (page) => {
     recipies = getPaginatedRecipies(page);
     currentPage = page;
+    scrollToTop();
   };
 
   // Function to go to the previous page

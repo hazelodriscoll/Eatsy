@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FavouritesList from "../components/FavouritesList.svelte";
+import BackToTopButton from "../components/BackToTopButton.astro";
 ---
 
 <BaseLayout>
   <div slot="main">
     <FavouritesList client:only="svelte" />
+    <BackToTopButton />
   </div>
 </BaseLayout>

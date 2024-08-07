@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DisplayRecipie from "../components/DisplayRecipie.svelte";
+import BackToTopButton from "../components/BackToTopButton.astro";
 ---
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
     <DisplayRecipie client:load />
+     <BackToTopButton />
   </div>
 </BaseLayout>
