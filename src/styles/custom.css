@@ -238,7 +238,10 @@ body {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  width: 100%; /* Container width relative to parent */
+  height: auto;
 }
+
 .recipe-option-container {
   position: relative;
   display: inline-block;
@@ -257,6 +260,8 @@ body {
   color: white;
   text-align: center;
   padding: 5px 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .container-background {
