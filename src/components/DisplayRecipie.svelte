@@ -76,7 +76,7 @@
               {/if}
             </button>
             {#if showAddedPopup}
-              <div class="popup">
+              <div class="popup popup-display">
                 Added to favourites <img
                   src="/Eatsy/images/happyIcon.png"
                   alt="smiley face"
@@ -85,7 +85,7 @@
               </div>
             {/if}
             {#if showRemovedPopup}
-              <div class="popup">
+              <div class="popup popup-display">
                 Removed from favourites <img
                   src="/Eatsy/images/sadIcon.png"
                   alt="sad face"
