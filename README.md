@@ -4,7 +4,7 @@ Welcome to **Eatsy**. This project was built using Astro and Svelte, and leverag
 
 ## 🚀 Getting Started
 
-To get started with Eatsy, make sure you are in root project folder, if not - cd Eatsy then:
+To get started with Eatsy, first clone the project from [Eatsy](https://github.com/hazelodriscoll/Eatsy) and follow steps below to deploy.
 
 1. **Install the project dependencies:**
 
