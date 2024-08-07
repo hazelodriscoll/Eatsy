@@ -208,7 +208,7 @@
       <div class="alert alert-danger" role="alert">
         {$error}
       </div>
-    {:else if $searchResults.length === 0}
+    {:else if $searchResults.length === 0 && !loading}
       <!-- Show a message when no recipes -->
       <div class="alert alert-warning text-center" role="alert">
         No recipes found. Try making a new search.
