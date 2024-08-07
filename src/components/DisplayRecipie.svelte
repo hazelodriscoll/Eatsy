@@ -1,3 +1,5 @@
+<!-- Component to display the current recipie that is stored in local storage -->
+
 <script>
   import { onMount } from "svelte";
   import { writable } from "svelte/store";

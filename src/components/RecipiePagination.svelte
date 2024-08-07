@@ -1,6 +1,6 @@
+<!-- Display all recipies for browse using Random API call, this does not have offset in response so needs own pagination -->
 <script>
   import RecipieCard from "./RecipieCard.svelte";
-  import { onMount } from "svelte";
   import { getRecipies } from "../services/recipieService.js";
   import {
     getSelectedOptions,
@@ -71,7 +71,7 @@
           includeInstructions: true,
         };
 
-        // Remove include-tags if null or empty
+        // Remove include-tags if null or empty as they are not needed
         if (
           params["include-tags"] === null ||
           params["include-tags"].length === 0

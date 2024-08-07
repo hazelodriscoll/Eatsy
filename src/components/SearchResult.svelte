@@ -1,3 +1,4 @@
+<!-- Search component for search page, user can search by any query and include diet filters -->
 <script>
   import { onMount } from "svelte";
   import { fetchSearchResults } from "../services/fetchSearchResults.js";

@@ -1,3 +1,4 @@
+<!-- Bootstrap modal contents, that includes same functionality as RecipieCard but designed for modal -->
 <script>
   import { setRecipie } from "../services/store.js";
   import { onMount } from "svelte";
@@ -8,20 +9,26 @@
   } from "../services/favourite.js";
   export let recipie;
 
+  // Fall back image if API does not return an image
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
+
+  // Needed for favourites functionality
   let isFav = false;
   let showAddedPopup = false;
   let showRemovedPopup = false;
 
+  // Function to set the current recipie in local storage and navigate to display recipie
   const setCurrentRecipie = (recipie) => {
     setRecipie(recipie);
     window.location.href = "/Eatsy/displayRecipie";
   };
 
+  // Function to handle image errors and set fallback image
   function handleImageError(event) {
     event.target.src = fallbackImage;
   }
 
+  // Favourites functionality
   const toggleFavourite = (recipie) => {
     isFav = isFavourite(recipie.id);
     if (isFav) {
@@ -44,6 +51,7 @@
   });
 </script>
 
+<!-- Modal Content: Displays the current recipie -->
 <div class="container">
   <!-- Use fallback image if API does not return an image -->
   {#if recipie.image}

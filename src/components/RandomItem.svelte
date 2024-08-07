@@ -1,3 +1,4 @@
+<!-- Component to display a random recipie that was got from API on index load, cycles thru all 50 recipies -->
 <script>
   import { writable } from "svelte/store";
   import { getRecipies } from "../services/recipieService.js";
@@ -53,6 +54,7 @@
         </div>
         <div class="modal-footer modal-background">
           <button class="btn btn-primary" on:click={closeModal}> Close </button>
+          <!-- Roll again option to get next recipie -->
           <button class="btn btn-primary" on:click={nextRecipie}>
             Roll Again <img
               src="/Eatsy/images/dice.png"
@@ -66,15 +68,3 @@
   </div>
   <div class="modal-backdrop fade show"></div>
 {/if}
-
-<style>
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1040;
-  }
-</style>
