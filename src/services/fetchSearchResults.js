@@ -1,5 +1,5 @@
 import { searchRecipies } from "./recipieService";
-
+// Fetches search results from the API with offset for pagination
 export async function fetchSearchResults(query, offset = 0, diet = null) {
   const params = {
     apiKey: "fb571eb0a36b417daee401017d390f99",
@@ -9,7 +9,7 @@ export async function fetchSearchResults(query, offset = 0, diet = null) {
     number: "9",
     offset: offset,
   };
-
+  // If a diet is specified, add it to the search parameters
   if (diet) {
     params.diet = diet;
   }

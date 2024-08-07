@@ -1,3 +1,4 @@
+<!-- Component to dynamically display a recipie -->
 <script>
   import { setRecipie } from "../services/store.js";
   import { onMount } from "svelte";
@@ -8,11 +9,16 @@
   } from "../services/favourite.js";
   export let recipie;
 
+  // Set current recipie in local storage and navigate to display recipie
   const setCurrentRecipie = (recipie) => {
     setRecipie(recipie);
     window.location.href = "/Eatsy/displayRecipie";
   };
+
+  // Fall back image if API does not return an image
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
+
+  // Favourites functionality
   let isFav = false;
   let showAddedPopup = false;
   let showRemovedPopup = false;
@@ -43,6 +49,7 @@
   });
 </script>
 
+<!-- Recipie Card -->
 <div class="col">
   <div class="card">
     <!-- Use fallback image if API does not return an image -->
@@ -94,7 +101,7 @@
             rel="noopener noreferrer"
             class="link-dark"
           >
-            <!-- Need if statement as response differs between API calls -->
+            <!-- Need if statement as response differs between API calls (Random vs Search) -->
             {#if recipie.sourceName}
               {recipie.sourceName}
             {:else}

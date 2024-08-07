@@ -2,7 +2,7 @@ function constructQueryString(params) {
   return new URLSearchParams(params).toString();
 }
 
-// Get Random Recipies
+// Get Random Recipes
 export async function getRecipies(params) {
   const baseURL = "https://api.spoonacular.com/recipes/random";
   const queryString = constructQueryString(params); // Convert params object to query string

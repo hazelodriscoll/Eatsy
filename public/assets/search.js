@@ -1,4 +1,4 @@
-// public/search.js
+// public search.js for search bar functionality on navbar
 document.addEventListener("DOMContentLoaded", function () {
   const searchForm = document.getElementById("searchForm");
   if (searchForm) {

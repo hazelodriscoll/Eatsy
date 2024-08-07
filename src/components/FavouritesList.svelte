@@ -1,7 +1,8 @@
+<!-- Component to display all favourites that are stored in local storage -->
 <script>
   import { onMount } from "svelte";
   import { getFavourites } from "../services/favourite";
-  import RecipieCard from "./RecipieCard.svelte"; // Import the RecipieCard component
+  import RecipieCard from "./RecipieCard.svelte";
 
   let allRecipies = [];
 
