@@ -10,10 +10,12 @@
   const recipie = writable(null);
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
 
+  // Set initial values for favourites variables
   let isFav = false;
   let showAddedPopup = false;
   let showRemovedPopup = false;
 
+  // Get the stored recipie from local storage (if it exists)
   onMount(() => {
     if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
       const storedRecipie = localStorage.getItem("currentRecipie");
@@ -25,6 +27,7 @@
     }
   });
 
+  // Favourite button handler
   const toggleFavourite = () => {
     recipie.update((current) => {
       if (isFav) {
@@ -41,6 +44,7 @@
     });
   };
 
+  // Format ingredient number
   function formatAmount(amount) {
     const numAmount = parseFloat(amount);
     return Number.isInteger(numAmount)
@@ -48,17 +52,19 @@
       : numAmount.toFixed(1);
   }
 
+  // Add fallback image as some recipies have no image in the API response
   function handleImageError(event) {
     event.target.src = fallbackImage;
   }
 </script>
 
 <main>
+  <!-- Display the recipie if it exists -->
   {#if $recipie}
-    <div class="container">
-      <div class="row">
-        <div class="col-12 title-button-container">
-          <h1 class="display-4">{$recipie.title} Recipie</h1>
+    <div class="container container-background">
+      <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <h1 class="display-4">{$recipie.title}</h1>
           <div>
             <button class="image-button" on:click={toggleFavourite}>
               {#if isFav}
@@ -96,59 +102,84 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="ingredientsList col-md-4">
-          <h3>Ingredients</h3>
-          <!-- If recipie from search API, print this way -->
-          {#if $recipie.nutrition}
-            {#each $recipie.nutrition.ingredients as ingredient}
-              <li>
-                <!-- Formatting of number needed as recipie returns in big decimals
-                      and per single serving -->
-                {formatAmount(ingredient.amount * $recipie.servings)}
-                {ingredient.unit} of {ingredient.name}
-              </li>
-            {/each}
-          {/if}
-          <!-- If recipie from random API, print this way -->
-          {#if $recipie.extendedIngredients}
-            {#each $recipie.extendedIngredients as ingredient}
-              <li>{ingredient.original}</li>
-            {/each}
-          {/if}
+      <!-- Recipie Ingredients, Image and Instructions -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="bg-light p-3 rounded">
+            <h3
+              class="bg-secondary text-white px-2 py-1 rounded"
+              style="display: inline-block;"
+            >
+              Ingredients
+            </h3>
+            <!-- Bootstrap Styled List -->
+            <ul class="list-group list-unstyled">
+              {#if $recipie.nutrition}
+                {#each $recipie.nutrition.ingredients as ingredient}
+                  <li class="list-group-item">
+                    <!-- API response gives amount per serving so need to multiply to get actual value -->
+                    {formatAmount(ingredient.amount * $recipie.servings)}
+                    {ingredient.unit}
+                    {ingredient.name}
+                  </li>
+                {/each}
+              {/if}
+              {#if $recipie.extendedIngredients}
+                {#each $recipie.extendedIngredients as ingredient}
+                  <li class="list-group-item">{ingredient.original}</li>
+                {/each}
+              {/if}
+            </ul>
+          </div>
         </div>
-        <div class="ingredientsImage col-md-8">
+        <div class="col-md-8 d-flex justify-content-center align-items-center">
           {#if $recipie.image}
             <img
               src={$recipie.image}
-              class="ingredientsImage custom-rounded"
+              class="img-fluid ingredientsImage custom-rounded"
               alt={$recipie.title}
               on:error={handleImageError}
-            />{:else}
+            />
+            <!-- Fallback image if API response has no image -->
+          {:else}
             <img
               src={fallbackImage}
-              class="ingredientsImage custom-rounded"
+              class="img-fluid ingredientsImage custom-rounded"
               alt={$recipie.title}
             />
           {/if}
         </div>
       </div>
+
       <div class="row">
         <div class="col-12">
-          <h3>Instructions</h3>
-          {#each $recipie.analyzedInstructions as instructionGroup}
-            {#each instructionGroup.steps as instruction}
-              <b>{instruction.number}: </b>
-              <!-- Regex needed for formatting the steps as no space is returned
-                    after full stop -->
-              {instruction.step.replace(/\.(?=\S)/g, ". ")}
-              <br />
-            {/each}
-          {/each}
+          <div class="bg-light p-3 rounded container-background">
+            <h3
+              class="bg-secondary text-white px-2 py-1 rounded"
+              style="display: inline-block;"
+            >
+              Instructions
+            </h3>
+            <!-- Bootstrap List Group for Styling -->
+            <div class="list-group">
+              {#each $recipie.analyzedInstructions as instructionGroup}
+                {#each instructionGroup.steps as instruction}
+                  <div class="list-group-item instruction-step">
+                    <h5 class="step-number">Step {instruction.number}</h5>
+                    <p class="step-text">
+                      {instruction.step}
+                    </p>
+                  </div>
+                {/each}
+              {/each}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   {:else}
-    <p>Recipe not found.</p>
+    <div class="container">
+      <p>Recipe not found.</p>
+    </div>
   {/if}
 </main>
