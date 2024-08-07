@@ -52,9 +52,7 @@
           {/if}
         </div>
         <div class="modal-footer modal-background">
-          <button class="btn btn-secondary" on:click={closeModal}>
-            Close
-          </button>
+          <button class="btn btn-primary" on:click={closeModal}> Close </button>
           <button class="btn btn-primary" on:click={nextRecipie}>
             Roll Again <img
               src="/Eatsy/images/dice.png"
