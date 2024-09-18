@@ -1,11 +1,11 @@
 ---
 title: "Home";
-description: "Home page for Eatsy application that provides randomised dinner suggestions and current popular recipies.";
+description: "Home page for Eatsy application that provides randomised dinner suggestions and current popular recipes.";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RandomItem from "../components/RandomItem.svelte";
-import { getRecipies } from "../services/recipieService.js";
-import RecipieCard from "../components/RecipieCard.svelte";
+import { getRecipes } from "../services/recipeService.js";
+import RecipeCard from "../components/RecipeCard.svelte";
 import BackToTopButton from "../components/BackToTopButton.astro";
 
 // Assuming you have an image file at src/assets/your-image.jpg
@@ -18,63 +18,65 @@ const params = {
   number: "3",
 };
 
-// Example call to getRecipies with dynamic parameters including hardcoded values
-const recipies = await getRecipies(params);
+// Example call to getRecipes with dynamic parameters including hardcoded values
+const recipes = await getRecipes(params);
 ---
 
 <BaseLayout>
   <div slot="main">
-  <div class="container-fluid mt-5 home-background">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <img
-          src={imageUrl}
-          class="img-fluid custom-rounded"
-          alt="Descriptive Alt Text"
-        />
-      </div>
-      <div class="col-md-6">
-        <div class="jumbotron p-5 custom-rounded bg-light shadow">
-          <h1 class="display-4 text-center mb-2">Welcome to Eatsy</h1>
-          <div
-            class="text-center mt-2 mb-4 d-flex justify-content-center align-items-center"
-          >
-            <span class="lead">Food for Thought </span>
-            <img
-              src="/Eatsy/images/thoughtIcon.png"
-              alt="Thought Icon"
-              class="detail-icon-original"
-            />
-          </div>
-          <hr class="my-4" />
-          <p class="detail-info text-center fs-6">
-            Can't decide what to eat? Let us inspire you! <br />
-            Click below for a random tasty suggestion or browse our recipes for endless
-            inspiration.
-          </p>
-          <div class="d-flex justify-content-center mt-4">
-            <RandomItem client:load />
+    <div class="container-fluid mt-5 home-background">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img
+            src={imageUrl}
+            class="img-fluid custom-rounded"
+            alt="Descriptive Alt Text"
+          />
+        </div>
+        <div class="col-md-6">
+          <div class="jumbotron p-5 custom-rounded bg-light shadow">
+            <h1 class="display-4 text-center mb-2">Welcome to Eatsy</h1>
+            <div
+              class="text-center mt-2 mb-4 d-flex justify-content-center align-items-center"
+            >
+              <span class="lead">Food for Thought </span>
+              <img
+                src="/Eatsy/images/thoughtIcon.png"
+                alt="Thought Icon"
+                class="detail-icon-original"
+              />
+            </div>
+            <hr class="my-4" />
+            <p class="detail-info text-center fs-6">
+              Can't decide what to eat? Let us inspire you! <br />
+              Click below for a random tasty suggestion or browse our recipes for
+              endless inspiration.
+            </p>
+            <div class="d-flex justify-content-center mt-4">
+              <RandomItem client:load />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container mt-5 container-background">
-    <div class="title-button-container">
-      <h2 class="display-4">Popular Recipes</h2>
-      <a href="/Eatsy/browse" class="btn btn-secondary btn-lg">Browse All Recipies</a>
+    <div class="container mt-5 container-background">
+      <div class="title-button-container">
+        <h2 class="display-4">Popular Recipes</h2>
+        <a href="/Eatsy/browse" class="btn btn-secondary btn-lg"
+          >Browse All Recipes</a
+        >
+      </div>
+      <div class="card-group row row-cols-1 row-cols-md-3 g-4">
+        {
+          recipes.recipes.map((recipe) => (
+            <div class="col-md-4">
+              <RecipeCard recipe={recipe} client:load />
+            </div>
+          ))
+        }
+      </div>
     </div>
-    <div class="card-group row row-cols-1 row-cols-md-3 g-4">
-      {
-        recipies.recipes.map((recipie) => (
-          <div class="col-md-4">
-            <RecipieCard recipie={recipie} client:load />
-          </div>
-        ))
-      }
-    </div>
-  </div>
-  <BackToTopButton />
+    <BackToTopButton />
   </div>
 </BaseLayout>

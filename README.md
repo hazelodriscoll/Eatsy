@@ -1,6 +1,6 @@
 # Eatsy
 
-Welcome to **Eatsy**. This project was built using Astro and Svelte, and leveraging Bootstrap for a responsive design. Eatsy offers a variety of features to simplify your meal planning and recipie discovery process which are laid out below.
+Welcome to **Eatsy**. This project was built using Astro and Svelte, and leveraging Bootstrap for a responsive design. Eatsy offers a variety of features to simplify your meal planning and recipe discovery process which are laid out below.
 
 ## 🚀 Getting Started
 
@@ -43,29 +43,29 @@ Inside the Eatsy project, you'll find the following folders and files:
 ├── src/
 │   ├── components/          # Reusable components
 │   │   ├── BackToTopButton.astro
-│   │   ├── DisplayRecipie.svelte
+│   │   ├── DisplayRecipe.svelte
 │   │   ├── FavouritesList.svelte
 │   │   ├── Footer.astro
 │   │   ├── Header.astro
-│   │   ├── ModalRecipie.svelte
+│   │   ├── ModalRecipe.svelte
 │   │   ├── RandomItem.svelte
-│   │   ├── RecipieCard.svelte
-│   │   ├── RecipiePagination.svelte
+│   │   ├── RecipeCard.svelte
+│   │   ├── RecipePagination.svelte
 │   │   └── SearchResult.svelte
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/               # Pages of the site
 │   │   ├── aboutUs.astro
 │   │   ├── browse.astro
-│   │   ├── displayRecipie.astro
+│   │   ├── displayRecipe.astro
 │   │   ├── favourites.astro
 │   │   ├── index.astro
-│   │   └── recipies.astro
+│   │   └── recipes.astro
 │   │   └── searchResults.astro
 │   ├── services/            # Services for handling data
 │   │   ├── favourite.js
 │   │   ├── fetchSearchResults.js
-│   │   ├── recipieService.js
+│   │   ├── recipeService.js
 │   │   ├── selectedOption.js
 │   │   └── store.js
 │   ├── styles/              # Custom CSS styles
@@ -77,17 +77,17 @@ Inside the Eatsy project, you'll find the following folders and files:
 ## 🌟 Features
 
 - **API Integration:** Integrated two requests to Spoonacular API for randomised results and search by query.
-- **Recipie Discovery:** Browse a wide variety of recipies by meal type, diet, or browse all.
-- **View Recipie:** See full detailed ingredients and instructions for every recipie.
+- **Recipe Discovery:** Browse a wide variety of recipes by meal type, diet, or browse all.
+- **View Recipe:** See full detailed ingredients and instructions for every recipe.
 - **Randomizer Button:** Get random dinner suggestions with a single click and keep rolling until you find one you like.
-- **Favourites:** Save your favourite recipies using local storage so you can always come back to them.
-- **Favourite Management:** Add or remove recipies from your favourites list with real-time updates.
-- **Search and Filter:** Search recipies using any query and filter results by diet and meal type.
+- **Favourites:** Save your favourite recipes using local storage so you can always come back to them.
+- **Favourite Management:** Add or remove recipes from your favourites list with real-time updates.
+- **Search and Filter:** Search recipes using any query and filter results by diet and meal type.
 - **Custom Imagery and Designs:** Enjoy a visually appealing interface with custom images and responsive designs.
 - **Back to Top Button:** Easily navigate to the top of the page with a single click.
-- **Modal Recipie View:** View random recipie suggestions in a modal for quick access without having to leave the current page.
-- **Paginated Recipie List:** Browse through recipies with pagination to enhance user experience and avoid duplication.
-- **Dynamic Recipie Display:** Recipies are dynamically fetched and displayed, ensuring up-to-date content and refresh on changes to selected options.
+- **Modal Recipe View:** View random recipe suggestions in a modal for quick access without having to leave the current page.
+- **Paginated Recipe List:** Browse through recipes with pagination to enhance user experience and avoid duplication.
+- **Dynamic Recipe Display:** Recipes are dynamically fetched and displayed, ensuring up-to-date content and refresh on changes to selected options.
 - **Responsive Design:** Fully responsive design ensuring optimal viewing experience across devices.
 - **Store Management:** Centralized state management using Svelte stores, local storage and session storage for efficient data handling.
 - **Contact Form:** Functional contact form that emails the owner using Formspree.
@@ -127,7 +127,7 @@ For any inquiries, please contact me via the contact form on the Contact page.
 - Thought Bubble icon by [Icons8](https://icons8.com/icon/0Pd8BYFOcvVH/thought-balloon) from [Icons8](https://icons8.com)
 - Dice icons created by [bearicons](https://www.flaticon.com/free-icons/dice) from [Flaticon](https://www.flaticon.com/)
 - Contact form API from [Formspree](https://formspree.io) - Used for handling form submissions easily and securely.
-- Recipie API: [Spoonacular Food API](https://spoonacular.com/food-api/docs) - All recipie data from random and search API paths with custom parameters.
+- Recipe API: [Spoonacular Food API](https://spoonacular.com/food-api/docs) - All recipe data from random and search API paths with custom parameters.
 
 ## 📄 License
 

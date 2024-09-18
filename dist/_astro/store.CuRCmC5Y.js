@@ -1,0 +1,1 @@
+import{w as r}from"./favourite.CYmlvXJL.js";const o=typeof window<"u"&&typeof localStorage<"u",t=o?localStorage.getItem("currentRecipe"):null,c=r(t?JSON.parse(t):null);o&&c.subscribe(e=>{e?localStorage.setItem("currentRecipe",JSON.stringify(e)):localStorage.removeItem("currentRecipe")});function i(e){c.set(e)}const n=r("");export{i as a,n as s};

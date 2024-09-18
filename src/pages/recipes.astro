@@ -1,26 +1,26 @@
 ---
-title: "Recipies";
-description: "Browse recipie results based on meal types and diets.";
+title: "Recipes";
+description: "Browse recipe results based on meal types and diets.";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import RecipiePagination from "../components/RecipiePagination.svelte";
+import RecipePagination from "../components/RecipePagination.svelte";
 import BackToTopButton from "../components/BackToTopButton.astro";
 
-const recipiesPerPage = 9;
+const recipesPerPage = 9;
 let currentPage = 1;
 ---
 
 <BaseLayout>
   <div slot="main" class="container mt-5">
     <div class="title-button-container">
-      <h1 class="display-4">Browse Recipies</h1>
+      <h1 class="display-4">Browse Recipes</h1>
       <img src="/Eatsy/images/eggsAndBaconImage.png" alt="eggs and bacon" />
     </div>
-    <RecipiePagination
+    <RecipePagination
       client:only="svelte"
-      recipiesPerPage={recipiesPerPage}
+      recipesPerPage={recipesPerPage}
       currentPage={currentPage}
     />
-     <BackToTopButton />
+    <BackToTopButton />
   </div>
 </BaseLayout>

@@ -1,0 +1,15 @@
+---
+title: "Display Recipes";
+description: "Displays a single recipe with an image, ingredients and instructions.";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BackToTopButton from "../components/BackToTopButton.astro";
+import DisplayRecipes from "../components/DisplayRecipe.svelte";
+---
+
+<BaseLayout>
+  <div slot="main" class="container mt-5">
+    <DisplayRecipes client:load />
+    <BackToTopButton />
+  </div>
+</BaseLayout>

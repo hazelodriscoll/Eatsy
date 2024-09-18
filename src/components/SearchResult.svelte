@@ -4,7 +4,7 @@
   import { fetchSearchResults } from "../services/fetchSearchResults.js";
   import { writable } from "svelte/store";
   import { searchQuery } from "../services/store.js";
-  import RecipieCard from "./RecipieCard.svelte";
+  import RecipeCard from "./RecipeCard.svelte";
 
   let searchResults = writable([]);
   let query = writable("");
@@ -215,10 +215,10 @@
         No recipes found. Try making a new search.
       </div>
     {:else}
-      <!-- Display Recipies with recipie card component -->
+      <!-- Display Recipes with recipe card component -->
       <div class="card-group row row-cols-1 row-cols-md-3 g-4">
         {#each $searchResults as result}
-          <RecipieCard recipie={result} />
+          <RecipeCard recipe={result} />
         {/each}
       </div>
       <!-- Pagination controls -->

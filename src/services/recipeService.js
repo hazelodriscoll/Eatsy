@@ -3,7 +3,7 @@ function constructQueryString(params) {
 }
 
 // Get Random Recipes
-export async function getRecipies(params) {
+export async function getRecipes(params) {
   const baseURL = "https://api.spoonacular.com/recipes/random";
   const queryString = constructQueryString(params); // Convert params object to query string
   const fullURL = `${baseURL}?${queryString}`;
@@ -27,7 +27,7 @@ export async function getRecipies(params) {
 }
 
 // Get Recipes by Search Query and Include Instructions
-export async function searchRecipies(params) {
+export async function searchRecipes(params) {
   const baseURL = "https://api.spoonacular.com/recipes/complexSearch";
   const queryString = constructQueryString(params); // Convert params object to query string
   const fullURL = `${baseURL}?${queryString}`;

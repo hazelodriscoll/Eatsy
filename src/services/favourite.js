@@ -5,21 +5,21 @@ export const getFavourites = () => {
   return favourites ? JSON.parse(favourites) : [];
 };
 // Add a recipe to the favourites
-export const addFavourite = (recipie) => {
+export const addFavourite = (recipe) => {
   const favourites = getFavourites();
-  if (!favourites.find((r) => r.id === recipie.id)) {
-    favourites.push(recipie);
+  if (!favourites.find((r) => r.id === recipe.id)) {
+    favourites.push(recipe);
     localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
   }
 };
 // Remove a recipe from the favourites
-export const removeFavourite = (recipieId) => {
+export const removeFavourite = (recipeId) => {
   let favourites = getFavourites();
-  favourites = favourites.filter((r) => r.id !== recipieId);
+  favourites = favourites.filter((r) => r.id !== recipeId);
   localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
 };
 // Check if a recipe is currently a favourite
-export const isFavourite = (recipieId) => {
+export const isFavourite = (recipeId) => {
   const favourites = getFavourites();
-  return favourites.some((r) => r.id === recipieId);
+  return favourites.some((r) => r.id === recipeId);
 };
