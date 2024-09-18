@@ -236,21 +236,43 @@ body {
 
 .recipe-options {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
-  width: 100%; /* Container width relative to parent */
-  height: auto;
+  gap: 20px;
+  justify-content: center; /* Center the content */
+  align-items: flex-start; /* Align items at the start */
 }
 
+/* Container for each recipe option */
 .recipe-option-container {
   position: relative;
-  display: inline-block;
+  flex: 1 1 calc(33.33% - 20px); /* Default to 3 columns */
+  max-width: 300px; /* Max width of each item */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
+
+/* Recipe option image */
 .recipe-option {
   cursor: pointer;
-  align-items: center;
-  justify-content: space-evenly;
+  width: 100%; /* Full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container while maintaining its aspect ratio */
+  border-radius: 10px; /* Optional: keep images rounded */
 }
+
+/* Adjust for medium screens (2 columns) */
+@media (min-width: 768px) {
+  .recipe-option-container {
+    flex: 1 1 calc(50% - 20px); /* 2 columns */
+  }
+}
+
+/* Adjust for large screens (3 columns) */
+@media (min-width: 1024px) {
+  .recipe-option-container {
+    flex: 1 1 calc(33.33% - 20px); /* 3 columns */
+  }
+}
+
 .overlay-text {
   position: absolute;
   bottom: 0;

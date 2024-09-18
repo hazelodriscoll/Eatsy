@@ -1,6 +1,6 @@
 ---
-title: "Browse Recipies";
-description: "Provides selection of options to browse recipies based on meal types and diets.";
+title: "Browse Recipes";
+description: "Provides selection of options to browse recipes based on meal types and diets.";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BackToTopButton from "../components/BackToTopButton.astro";
@@ -9,7 +9,7 @@ import BackToTopButton from "../components/BackToTopButton.astro";
 <BaseLayout>
   <div slot="main" class="container mt-5">
     <div class="title-button-container">
-      <h1 class="display-4">Browse Recipies</h1>
+      <h1 class="display-4">Browse Recipes</h1>
       <img src="/Eatsy/images/hotdogHeaderImage.png" alt="hotdog" />
     </div>
     <div class="container-fluid container-background">
@@ -146,7 +146,7 @@ import BackToTopButton from "../components/BackToTopButton.astro";
 
         // Save the selected option to session storage
         sessionStorage.setItem("selectedOption", selectedOption);
-        window.location.href = "/Eatsy/recipies";
+        window.location.href = "/Eatsy/recipes";
       });
     });
   });

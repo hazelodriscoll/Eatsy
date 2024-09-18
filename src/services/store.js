@@ -1,40 +1,40 @@
-// Svelte store for storing the current recipie and search query
+// Svelte store for storing the current reciie and search query
 import { writable } from "svelte/store";
 
 // Check if the code is running in the browser
 const isBrowser =
   typeof window !== "undefined" && typeof localStorage !== "undefined";
 
-// Get the current recipie from localStorage
-const storedRecipie = isBrowser ? localStorage.getItem("currentRecipie") : null;
+// Get the current recipe from localStorage
+const storedRecipe = isBrowser ? localStorage.getItem("currentRecipe") : null;
 
-// Create a writable store for the current recipie
-export const currentRecipie = writable(
-  storedRecipie ? JSON.parse(storedRecipie) : null
+// Create a writable store for the current recipe
+export const currentRecipe = writable(
+  storedRecipe ? JSON.parse(storedRecipe) : null
 );
 
-// If the code is running in the browser, subscribe to the currentRecipie store
+// If the code is running in the browser, subscribe to the currentRecipe store
 if (isBrowser) {
-  currentRecipie.subscribe((value) => {
+  currentRecipe.subscribe((value) => {
     if (value) {
-      // If a recipie is set, store it in localStorage
-      localStorage.setItem("currentRecipie", JSON.stringify(value));
+      // If a recipe is set, store it in localStorage
+      localStorage.setItem("currentRecipe", JSON.stringify(value));
     } else {
-      // If no recipie is set, remove it from localStorage
-      localStorage.removeItem("currentRecipie");
+      // If no recipe is set, remove it from localStorage
+      localStorage.removeItem("currentRecipe");
     }
   });
 }
-// Set the current recipie in the store
-export function setRecipie(data) {
-  currentRecipie.set(data);
+// Set the current recipe in the store
+export function setRecipe(data) {
+  currentRecipe.set(data);
 }
 
-// Get the current recipie from the store
-export const getRecipie = () => {
+// Get the current recipe from the store
+export const getRecipe = () => {
   if (!isBrowser) return null;
-  const recipie = localStorage.getItem("currentRecipie");
-  return recipie ? JSON.parse(recipie) : null;
+  const recipe = localStorage.getItem("currentRecipe");
+  return recipe ? JSON.parse(recipe) : null;
 };
 
 // Svelte store for storing the search query

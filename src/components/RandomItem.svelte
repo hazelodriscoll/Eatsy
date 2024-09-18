@@ -1,27 +1,27 @@
-<!-- Component to display a random recipie that was got from API on index load, cycles thru all 50 recipies -->
+<!-- Component to display a random recipe that was got from API on index load, cycles thru all 50 recipes -->
 <script>
   import { writable } from "svelte/store";
-  import { getRecipies } from "../services/recipieService.js";
-  import ModalRecipie from "./ModalRecipie.svelte";
+  import { getRecipes } from "../services/recipeService.js";
+  import ModalRecipe from "./ModalRecipe.svelte";
 
-  let recipies = writable([]);
-  let currentRecipieIndex = writable(0);
+  let recipes = writable([]);
+  let currentRecipeIndex = writable(0);
   let showModal = writable(false);
 
-  async function fetchRandomRecipies() {
+  async function fetchRandomRecipes() {
     const params = {
       apiKey: "fb571eb0a36b417daee401017d390f99",
       "include-tags": "main course",
       number: "50",
     };
-    const data = await getRecipies(params);
-    recipies.set(data.recipes);
-    currentRecipieIndex.set(0);
+    const data = await getRecipes(params);
+    recipes.set(data.recipes);
+    currentRecipeIndex.set(0);
     showModal.set(true);
   }
 
-  function nextRecipie() {
-    currentRecipieIndex.update((n) => (n + 1) % $recipies.length);
+  function nextRecipe() {
+    currentRecipeIndex.update((n) => (n + 1) % $recipes.length);
   }
 
   function closeModal() {
@@ -31,8 +31,8 @@
 
 <!-- Button to fetch random recipes -->
 <div class="center-content">
-  <button class="btn btn-primary btn-lg" on:click={fetchRandomRecipies}>
-    Get Random Recipie
+  <button class="btn btn-primary btn-lg" on:click={fetchRandomRecipes}>
+    Get Random Recipe
   </button>
 </div>
 
@@ -46,16 +46,16 @@
           ></button>
         </div>
         <div class="modal-body modal-body">
-          {#if $recipies.length > 0}
-            <ModalRecipie recipie={$recipies[$currentRecipieIndex]} />
+          {#if $recipes.length > 0}
+            <ModalRecipe recipe={$recipes[$currentRecipeIndex]} />
           {:else}
             <p>Loading...</p>
           {/if}
         </div>
         <div class="modal-footer modal-background">
           <button class="btn btn-primary" on:click={closeModal}> Close </button>
-          <!-- Roll again option to get next recipie -->
-          <button class="btn btn-primary" on:click={nextRecipie}>
+          <!-- Roll again option to get next recipe -->
+          <button class="btn btn-primary" on:click={nextRecipe}>
             Roll Again <img
               src="/Eatsy/images/dice.png"
               alt="dice"

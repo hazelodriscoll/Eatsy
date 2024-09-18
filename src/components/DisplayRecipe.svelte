@@ -1,4 +1,4 @@
-<!-- Component to display the current recipie that is stored in local storage -->
+<!-- Component to display the current recipe that is stored in local storage -->
 
 <script>
   import { onMount } from "svelte";
@@ -9,7 +9,7 @@
     isFavourite,
   } from "../services/favourite.js";
 
-  const recipie = writable(null);
+  const recipe = writable(null);
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
 
   // Set initial values for favourites variables
@@ -17,21 +17,21 @@
   let showAddedPopup = false;
   let showRemovedPopup = false;
 
-  // Get the stored recipie from local storage (if it exists)
+  // Get the stored recipe from local storage (if it exists)
   onMount(() => {
     if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-      const storedRecipie = localStorage.getItem("currentRecipie");
-      if (storedRecipie) {
-        const parsedRecipie = JSON.parse(storedRecipie);
-        recipie.set(parsedRecipie);
-        isFav = isFavourite(parsedRecipie.id);
+      const storedRecipe = localStorage.getItem("currentRecipe");
+      if (storedRecipe) {
+        const parsedRecipe = JSON.parse(storedRecipe);
+        recipe.set(parsedRecipe);
+        isFav = isFavourite(parsedRecipe.id);
       }
     }
   });
 
   // Favourite button handler
   const toggleFavourite = () => {
-    recipie.update((current) => {
+    recipe.update((current) => {
       if (isFav) {
         removeFavourite(current.id);
         showRemovedPopup = true;
@@ -54,19 +54,19 @@
       : numAmount.toFixed(1);
   }
 
-  // Add fallback image as some recipies have no image in the API response
+  // Add fallback image as some recipes have no image in the API response
   function handleImageError(event) {
     event.target.src = fallbackImage;
   }
 </script>
 
 <main>
-  <!-- Display the recipie if it exists -->
-  {#if $recipie}
+  <!-- Display the recipe if it exists -->
+  {#if $recipe}
     <div class="container container-background">
       <div class="row mb-4">
         <div class="col-12 d-flex justify-content-between align-items-center">
-          <h1 class="display-4">{$recipie.title}</h1>
+          <h1 class="display-4">{$recipe.title}</h1>
           <div>
             <button class="image-button" on:click={toggleFavourite}>
               {#if isFav}
@@ -104,7 +104,7 @@
           </div>
         </div>
       </div>
-      <!-- Recipie Ingredients, Image and Instructions -->
+      <!-- Recipe Ingredients, Image and Instructions -->
       <div class="row mb-4">
         <div class="col-md-4">
           <div class="bg-light p-3 rounded">
@@ -116,18 +116,18 @@
             </h3>
             <!-- Bootstrap Styled List -->
             <ul class="list-group list-unstyled">
-              {#if $recipie.nutrition}
-                {#each $recipie.nutrition.ingredients as ingredient}
+              {#if $recipe.nutrition}
+                {#each $recipe.nutrition.ingredients as ingredient}
                   <li class="list-group-item">
                     <!-- API response gives amount per serving so need to multiply to get actual value -->
-                    {formatAmount(ingredient.amount * $recipie.servings)}
+                    {formatAmount(ingredient.amount * $recipe.servings)}
                     {ingredient.unit}
                     {ingredient.name}
                   </li>
                 {/each}
               {/if}
-              {#if $recipie.extendedIngredients}
-                {#each $recipie.extendedIngredients as ingredient}
+              {#if $recipe.extendedIngredients}
+                {#each $recipe.extendedIngredients as ingredient}
                   <li class="list-group-item">{ingredient.original}</li>
                 {/each}
               {/if}
@@ -135,11 +135,11 @@
           </div>
         </div>
         <div class="col-md-8 d-flex justify-content-center align-items-center">
-          {#if $recipie.image}
+          {#if $recipe.image}
             <img
-              src={$recipie.image}
+              src={$recipe.image}
               class="img-fluid ingredientsImage custom-rounded"
-              alt={$recipie.title}
+              alt={$recipe.title}
               on:error={handleImageError}
             />
             <!-- Fallback image if API response has no image -->
@@ -147,7 +147,7 @@
             <img
               src={fallbackImage}
               class="img-fluid ingredientsImage custom-rounded"
-              alt={$recipie.title}
+              alt={$recipe.title}
             />
           {/if}
         </div>
@@ -164,7 +164,7 @@
             </h3>
             <!-- Bootstrap List Group for Styling -->
             <div class="list-group">
-              {#each $recipie.analyzedInstructions as instructionGroup}
+              {#each $recipe.analyzedInstructions as instructionGroup}
                 {#each instructionGroup.steps as instruction}
                   <div class="list-group-item instruction-step">
                     <h5 class="step-number">Step {instruction.number}</h5>

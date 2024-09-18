@@ -1,13 +1,13 @@
-<!-- Bootstrap modal contents, that includes same functionality as RecipieCard but designed for modal -->
+<!-- Bootstrap modal contents, that includes same functionality as RecipeCard but designed for modal -->
 <script>
-  import { setRecipie } from "../services/store.js";
+  import { setRecipe } from "../services/store.js";
   import { onMount } from "svelte";
   import {
     addFavourite,
     removeFavourite,
     isFavourite,
   } from "../services/favourite.js";
-  export let recipie;
+  export let recipe;
 
   // Fall back image if API does not return an image
   const fallbackImage = "/Eatsy/images/fallbackImage.png";
@@ -17,10 +17,10 @@
   let showAddedPopup = false;
   let showRemovedPopup = false;
 
-  // Function to set the current recipie in local storage and navigate to display recipie
-  const setCurrentRecipie = (recipie) => {
-    setRecipie(recipie);
-    window.location.href = "/Eatsy/displayRecipie";
+  // Function to set the current recipe in local storage and navigate to display recipe
+  const setCurrentRecipe = (recipe) => {
+    setRecipe(recipe);
+    window.location.href = "/Eatsy/displayRecipe";
   };
 
   // Function to handle image errors and set fallback image
@@ -29,51 +29,55 @@
   }
 
   // Favourites functionality
-  const toggleFavourite = (recipie) => {
-    isFav = isFavourite(recipie.id);
+  const toggleFavourite = (recipe) => {
+    isFav = isFavourite(recipe.id);
     if (isFav) {
-      removeFavourite(recipie.id);
+      removeFavourite(recipe.id);
       showRemovedPopup = true;
       setTimeout(() => (showRemovedPopup = false), 2000); // Hide popup after 2 seconds
     } else {
-      addFavourite(recipie);
+      addFavourite(recipe);
       showAddedPopup = true;
       setTimeout(() => (showAddedPopup = false), 2000); // Hide popup after 2 seconds
     }
     isFav = !isFav;
   };
 
-  // On mount, check if recipie is favourite and set isFav accordingly
+  // On mount, check if recipe is favourite and set isFav accordingly
   onMount(() => {
     if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-      isFav = isFavourite(recipie.id);
+      isFav = isFavourite(recipe.id);
     }
   });
+
+  $: if (recipe) {
+    isFav = isFavourite(recipe.id);
+  }
 </script>
 
-<!-- Modal Content: Displays the current recipie -->
+<!-- Modal Content: Displays the current recipe -->
 <div class="container">
   <!-- Use fallback image if API does not return an image -->
-  {#if recipie.image}
+  {#if recipe.image}
     <img
-      src={recipie.image}
+      src={recipe.image}
       class="img-fluid custom-rounded img-top"
-      alt={recipie.title}
+      alt={recipe.title}
       on:error={handleImageError}
     />{:else}
     <img
       src={fallbackImage}
       class="img-fluid custom-rounded img-top"
-      alt={recipie.title}
+      alt={recipe.title}
     />
   {/if}
 
-  <h5 class="modal-header">{recipie.title}</h5>
+  <h5 class="modal-header">{recipe.title}</h5>
   <div class="recipe-details">
     <div class="detail-item">
       <img src="/Eatsy/images/time-icon.png" alt="Time" class="detail-icon" />
       <span class="detail-name">Total Time:</span>
-      <span class="detail-info">{recipie.readyInMinutes} minutes</span>
+      <span class="detail-info">{recipe.readyInMinutes} minutes</span>
     </div>
     <div class="detail-item">
       <img
@@ -82,33 +86,30 @@
         class="detail-icon"
       />
       <span class="detail-name">Servings:</span>
-      <span class="detail-info">{recipie.servings}</span>
+      <span class="detail-info">{recipe.servings}</span>
     </div>
     <div class="detail-item">
       <img
-        src="/Eatsy/images/recipie-by-icon.png"
+        src="/Eatsy/images/recipe-by-icon.png"
         alt="Recipe by"
         class="detail-icon"
       />
       <span class="detail-name">Recipe by:</span>
       <a
-        href={recipie.spoonacularSourceUrl}
+        href={recipe.spoonacularSourceUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="link-dark"
       >
-        <span class="detail-link">{recipie.creditsText}</span>
+        <span class="detail-link">{recipe.creditsText}</span>
       </a>
     </div>
     <br />
     <div class="center-content modal-button-container">
-      <button
-        class="btn btn-primary"
-        on:click={() => setCurrentRecipie(recipie)}
-      >
-        View Full Recipie
+      <button class="btn btn-primary" on:click={() => setCurrentRecipe(recipe)}>
+        View Full Recipe
       </button>
-      <button class="image-button" on:click={toggleFavourite(recipie)}>
+      <button class="image-button" on:click={() => toggleFavourite(recipe)}>
         {#if isFav}
           <img
             src="/Eatsy/images/favouritedButton.png"
@@ -143,7 +144,7 @@
       {/if}
     </div>
     <div class="sr-detail-item modal-badge-container">
-      {#each recipie.diets as diet}
+      {#each recipe.diets as diet}
         <span class="badge rounded-pill text-bg-secondary">{diet}</span>
       {/each}
     </div>

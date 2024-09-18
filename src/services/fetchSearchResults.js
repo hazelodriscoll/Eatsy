@@ -1,4 +1,4 @@
-import { searchRecipies } from "./recipieService";
+import { searchRecipes } from "./recipeService";
 // Fetches search results from the API with offset for pagination
 export async function fetchSearchResults(query, offset = 0, diet = null) {
   const params = {
@@ -15,7 +15,7 @@ export async function fetchSearchResults(query, offset = 0, diet = null) {
   }
 
   try {
-    const response = await searchRecipies(params);
+    const response = await searchRecipes(params);
     return response;
   } catch (err) {
     console.error("Failed to fetch search results:", err);
